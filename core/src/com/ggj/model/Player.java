@@ -22,7 +22,7 @@ public class Player extends ActorBase {
   }
 
   private void playerInput() {
-    if (spell_combos.size > spell_combo_size) {
+    if (spell_combos.size >= spell_combo_size) {
       spell_combos.clear();
     }
 
@@ -43,7 +43,7 @@ public class Player extends ActorBase {
   public String getSpellString(){
     String spells = "";
     for(String spell : spell_combos){
-      spells += spell + " ";
+      spells += spell + "  ";
     }
     return spells;
   }

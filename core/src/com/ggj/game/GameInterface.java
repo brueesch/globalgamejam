@@ -22,7 +22,7 @@ public class GameInterface {
     
     batch.begin();
     font.setColor(0, 0, 0, 1);
-    font.draw(batch, "Spells: " + player.getSpellString(), 15, screen_height - 15);
+    font.draw(batch, "Spells:   " + player.getSpellString(), 15, screen_height - 15);
     batch.end();
   }
 }
