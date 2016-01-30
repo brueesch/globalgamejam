@@ -43,25 +43,9 @@ public abstract class ActorBase extends Actor {
   }
 
   public void initialize(String texturePath, float scale, Vector2 position) {
-    Vector2 origin = new Vector2(getWidth()/2, getHeight()/2);
+    Texture image = new Texture(Gdx.files.internal(texturePath));
+    Vector2 origin = new Vector2(image.getWidth()/2, image.getHeight()/2);
     initialize(texturePath, scale, position, origin);
-  }
-  
-  public void initialize(Array<String> texturePaths, float scale, Vector2 position) {
-    TextureRegion region = null;
-    
-    for(String path : texturePaths){
-      Texture image = new Texture(Gdx.files.internal(path));
-      region = new TextureRegion(image);
-      regions.add(region);
-    }
-    
-    setWidth(region.getRegionWidth());
-    setHeight(region.getRegionHeight());
-    setOrigin(getWidth()/2, getHeight()/2);
-    setPosition(position.x, position.y);
-
-    setScale(scale);
   }
   
   public void initialize(String texturePath, float scale, Vector2 position, Vector2 origin) {
@@ -69,6 +53,30 @@ public abstract class ActorBase extends Actor {
     Texture image = new Texture(Gdx.files.internal(texturePath));
     TextureRegion region = new TextureRegion(image);
     regions.add(region);
+    
+    setWidth(region.getRegionWidth());
+    setHeight(region.getRegionHeight());
+    setOrigin(origin.x, origin.y);
+    setPosition(position.x, position.y);
+
+    setScale(scale);
+  }
+  
+  public void initialize(Array<String> texturePaths, float scale, Vector2 position) {
+    Texture image = new Texture(Gdx.files.internal(texturePaths.get(0)));
+    Vector2 origin = new Vector2(image.getWidth()/2, image.getHeight()/2);
+    initialize (texturePaths, scale, position, origin);
+  }
+  
+  public void initialize(Array<String> texturePaths, float scale, Vector2 position, Vector2 origin) {
+    regions.clear();
+    TextureRegion region = null;
+    
+    for(String path : texturePaths){
+      Texture image = new Texture(Gdx.files.internal(path));
+      region = new TextureRegion(image);
+      regions.add(region);
+    }
     
     setWidth(region.getRegionWidth());
     setHeight(region.getRegionHeight());

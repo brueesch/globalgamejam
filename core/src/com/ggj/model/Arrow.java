@@ -21,11 +21,16 @@ public class Arrow extends ActorBase{
     initialize(paths, GameConfig.SCALE, position);
     
     if(direction.equals("down")){
+      setOrigin(getOriginX()+1, getOriginY());
       setRotation(270);
     }else if(direction.equals("left")){
+      setOrigin(getOriginX()+1, getOriginY()+1);
       setRotation(180);
     }else if(direction.equals("up")){
+      setOrigin(getOriginX(), getOriginY()+1);
       setRotation(90);
+    }else{
+      setOrigin(getOriginX()-1, getOriginY()-1);
     }
   }
   

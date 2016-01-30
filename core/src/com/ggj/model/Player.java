@@ -10,12 +10,22 @@ import com.ggj.game.ObjectController;
 
 public class Player extends ActorBase {
   private int spell_combo_size = 5;
+  private float spell_time = 0.5f;
+  
   private Array<String> spell_combos;
   private float mana = 0.0f;
+  private float magic_time_accumulator = 0;
+  private boolean magic_time = false;
 
   public Player(Vector2 position) {
     spell_combos = new Array<String>();
-    initialize("model/player/player.png", GameConfig.SCALE, position, new Vector2(0,0));
+    Array<String> paths = new Array<String>();
+    paths.add("model/player/player.png");
+    paths.add("model/player/player_left.png");
+    paths.add("model/player/player_up.png");
+    paths.add("model/player/player_down.png");
+    paths.add("model/player/player_right.png");
+    initialize(paths, GameConfig.SCALE, position, new Vector2(0,0));
   }
 
   @Override
@@ -39,24 +49,40 @@ public class Player extends ActorBase {
     if (Gdx.input.isKeyJustPressed(Keys.LEFT)) {
       spell_combos.add("left");
       ObjectController.getInterface().updateArrow();
+      setRegion(1);
+      magic_time = true;
     }
     if (Gdx.input.isKeyJustPressed(Keys.UP)) {
       spell_combos.add("up");
       ObjectController.getInterface().updateArrow();
+      setRegion(2);
+      magic_time = true;
     }
     if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
       spell_combos.add("down");
       ObjectController.getInterface().updateArrow();
+      setRegion(3);
+      magic_time = true;
     }
     if (Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
       spell_combos.add("right");
       ObjectController.getInterface().updateArrow();
+      setRegion(4);
+      magic_time = true;
     }
     if(Gdx.input.isKeyJustPressed(Keys.SPACE)) {
       if(mana >= 4.0f)
       {
         mana -= 4.0f;
         shoot(Element.Fire);
+      }
+    }
+    if(magic_time){
+      magic_time_accumulator += Gdx.graphics.getDeltaTime();
+      if(magic_time_accumulator > spell_time){
+        setRegion(0);
+        magic_time = false;
+        magic_time_accumulator = 0;
       }
     }
   }
