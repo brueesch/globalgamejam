@@ -27,7 +27,6 @@ public class Spell extends ActorBase {
     checkCollisions();
 
     float speed = 100.1f;
-    System.out.println("Mouse x/y: " + destination.x + " / " + destination.y);
     setPosition(getX() + speed * delta * (float)Math.cos(angle), getY() - speed * delta * (float)Math.sin(angle));
   }
   
