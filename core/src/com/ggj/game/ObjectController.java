@@ -1,5 +1,8 @@
 package com.ggj.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.ggj.model.Player;
@@ -23,6 +26,20 @@ public class ObjectController {
     }
     
     return null;
+  }
+  
+  public static <T> List<T> getList(Class<T> callee)
+  {
+    List<T> result = new ArrayList<T>();
+    for(Actor actor : objects)
+    {
+      if(callee.equals(actor.getClass()))
+      {
+        result.add((T)actor);
+      }
+    }
+    
+    return result;
   }
   
   private static int objectId = 0;
