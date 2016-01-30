@@ -1,5 +1,7 @@
 package com.ggj.game;
 
+import com.badlogic.gdx.math.Vector2;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,40 +12,36 @@ import java.util.Properties;
  */
 public class GameConfig {
 
-    public GameConfig() {
-        loadProperties();
+  public static int SKYSCRAPER_LEVELS;
+  public static Vector2 SKYSCRAPER_POSITION;
+  public static float SCALE;
+  public static int FLOOR_HEIGHT;
+
+  public GameConfig() {
+    loadProperties();
+  }
+
+  private void loadProperties() {
+    try {
+      loadPropertiesFile();
+    } catch (IOException ex) {
+      ex.printStackTrace();
     }
+  }
 
-    private void loadProperties() {
-        Properties prop = new Properties();
-        InputStream input = null;
+  private void loadPropertiesFile() throws IOException {
+    InputStream input = new FileInputStream("../config.properties");
+    Properties prop = new Properties();
+    prop.load(input);
+    fillVariables(prop);
+    input.close();
+  }
 
-        try {
-
-            input = new FileInputStream("config.properties");
-
-            // load a properties file
-            prop.load(input);
-
-            // get the property value and print it out
-            System.out.println(prop.getProperty("database"));
-            System.out.println(prop.getProperty("dbuser"));
-            System.out.println(prop.getProperty("dbpassword"));
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
-
-
+  private void fillVariables(Properties prop) {
+    SKYSCRAPER_LEVELS = Integer.parseInt(prop.getProperty("levels"));
+    SKYSCRAPER_POSITION = new Vector2(Integer.parseInt(prop.getProperty("positionX")), Integer.parseInt(prop.getProperty("positionY")));
+    SCALE = Float.parseFloat(prop.getProperty("scale"));
+    FLOOR_HEIGHT = Integer.parseInt(prop.getProperty("floorheight"));
+  }
 }
 

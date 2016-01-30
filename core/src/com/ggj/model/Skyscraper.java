@@ -4,71 +4,73 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.ggj.game.GameConfig;
 import com.ggj.game.ObjectController;
 
 public class Skyscraper extends Actor {
 
-    private int levels;
-    private int levelHeight;
-    private Vector2 position;
-    private int id;
+  private int levels;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  private int id;
+  private TextureRegion region;
 
 
-    public Skyscraper(int level, int levelHeight, Vector2 position) {
-        super();
-		this.id = ObjectController.register(this);
-        this.levels = level;
-        this.levelHeight = levelHeight;
-        this.position = position;
-    }
+  public Skyscraper(int level, Vector2 position) {
+    super();
+    this.id = ObjectController.register(this);
+    this.levels = level;
+    setX(position.x);
+    setY(position.y);
+    initializeTexture();
 
-    public int getLevel() {
-        return levels;
-    }
+  }
 
-    public void setLevel(int level) {
-        this.levels = level;
-    }
+  public int getLevel() {
+    return levels;
+  }
 
-    public int getLevelHeight() {
-        return levelHeight;
-    }
+  public void setLevel(int level) {
+    this.levels = level;
+  }
 
-    public void setLevelHeight(int levelHeight) {
-        this.levelHeight = levelHeight;
-    }
+  @Override
+  public void act(float delta) {
+    super.act(delta);
+  }
 
-    public Vector2 getPosition() {
-        return position;
-    }
+  @Override
+  public void draw(Batch batch, float parentAlpha) {
+    super.draw(batch, parentAlpha);
+    batch.draw(region, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+  }
 
-    public void setPosition(Vector2 position) {
-        this.position = position;
-    }
+  @Override
+  public Actor hit(float x, float y, boolean touchable) {
+    return super.hit(x, y, touchable);
 
-    public void hit() {
-        levels--;
-    }
+  }
 
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-    }
+  private void initializeTexture() {
+    Texture image = new Texture(Gdx.files.internal("model/environment/skyscraper/skyscraper.png"));
+    region = new TextureRegion(image);
 
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
-        for (int i = 0; i < levels; i++) {
-            drawLevel(batch, position);
-        }
+    setWidth(region.getRegionWidth());
+    setHeight(region.getRegionHeight());
+    setOrigin(getWidth()/2, getHeight()/2);
 
-    }
+    setScale(GameConfig.SCALE);
 
-    private void drawLevel(Batch batch, Vector2 position) {
-        batch.draw(new Texture(Gdx.files.internal("model/enviorment/skyscraper.png")), position.x, position.y);
-
-    }
+  }
 
 }

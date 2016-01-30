@@ -23,6 +23,7 @@ public class GameController implements Screen {
   private Skyscraper skyscraper;
 
   public GameController(final GlobalGameJam globalgamejam) {
+		loadConfigs();
     setUpGame();
     createWorld();
   }
@@ -83,7 +84,8 @@ public class GameController implements Screen {
     {
       stage.addActor(enemy);
     }
-    skyscraper = new Skyscraper(5, 50, new Vector2(10, 10));
+    skyscraper = new Skyscraper(GameConfig.SKYSCRAPER_LEVELS, GameConfig.SKYSCRAPER_POSITION);
+    stage.addActor(skyscraper);
   }
 
   private void setUpGame() {
@@ -91,5 +93,9 @@ public class GameController implements Screen {
     stage = new Stage(screenviewport);
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
+	}
+
+	private void loadConfigs() {
+		new GameConfig();
   }
 }
