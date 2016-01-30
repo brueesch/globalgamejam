@@ -6,7 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.ggj.model.Element;
+import com.ggj.model.Enemy;
 import com.ggj.model.Player;
 import com.ggj.model.Skyscraper;
 
@@ -16,6 +19,7 @@ public class GameController implements Screen {
   private Stage stage;
   private OrthographicCamera camera;
   private Player player;
+  private Array<Enemy> enemies;
   private Skyscraper skyscraper;
 
   public GameController(final GlobalGameJam globalgamejam) {
@@ -37,6 +41,7 @@ public class GameController implements Screen {
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
     stage.draw();
+    player.update();
   }
 
   @Override
@@ -71,7 +76,14 @@ public class GameController implements Screen {
 
   private void createWorld() {
     player = new Player();
+    enemies = new Array<Enemy>();
+    enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
+    enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
     stage.addActor(player);
+    for(Enemy enemy : enemies)
+    {
+      stage.addActor(enemy);
+    }
     skyscraper = new Skyscraper(5, 50, new Vector2(10, 10));
   }
 
