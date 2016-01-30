@@ -39,4 +39,12 @@ public class Player extends ActorBase {
       spell_combos.add("right");
     }
   }
+  
+  public String getSpellString(){
+    String spells = "";
+    for(String spell : spell_combos){
+      spells += spell + " ";
+    }
+    return spells;
+  }
 }
