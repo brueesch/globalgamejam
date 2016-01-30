@@ -27,12 +27,17 @@ public abstract class ActorBase extends Actor {
   }
 
   public void initialize(String texturePath, float scale, Vector2 position) {
+    Vector2 origin = new Vector2(getWidth()/2, getHeight()/2);
+    initialize(texturePath, scale, position, origin);
+  }
+  
+  public void initialize(String texturePath, float scale, Vector2 position, Vector2 origin) {
     Texture image = new Texture(Gdx.files.internal(texturePath));
     region = new TextureRegion(image);
     
     setWidth(region.getRegionWidth());
     setHeight(region.getRegionHeight());
-    setOrigin(getWidth()/2, getHeight()/2);
+    setOrigin(origin.x/2, origin.y/2);
     setPosition(position.x, position.y);
 
     setScale(scale);

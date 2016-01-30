@@ -12,7 +12,7 @@ public class Player extends ActorBase {
 
   public Player(Vector2 position) {
     spell_combos = new Array<String>();
-    initialize("model/player/player.png", GameConfig.SCALE, position);
+    initialize("model/player/player.png", GameConfig.SCALE, position, new Vector2(0,0));
   }
 
   @Override

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.ggj.model.Background;
 import com.ggj.model.Element;
 import com.ggj.model.Enemy;
 import com.ggj.model.Player;
@@ -24,6 +25,7 @@ public class GameController implements Screen {
   private Array<Enemy> enemies;
   private Rock skyscraper;
   private GameInterface game_interface;
+  private Background background;
 
   public GameController(final GlobalGameJam globalgamejam) {
     loadConfigs();
@@ -79,10 +81,12 @@ public class GameController implements Screen {
   }
 
   private void createWorld() {
+    background = new Background();
     player = new Player(new Vector2(100, 100));
     enemies = new Array<Enemy>();
     enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
     enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
+    stage.addActor(background);
     stage.addActor(player);
     for (Enemy enemy : enemies) {
       stage.addActor(enemy);
