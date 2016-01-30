@@ -18,7 +18,7 @@ import com.ggj.model.Rock;
 public class GameController implements Screen {
 
   private FitViewport screenviewport;
-  private Stage stage;
+  private ExtendedStageController stage;
   private OrthographicCamera camera;
   private Player player;
   private Array<Enemy> enemies;
@@ -82,7 +82,7 @@ public class GameController implements Screen {
 
   private void createWorld() {
     background = new Background();
-    player = new Player(new Vector2(100, 100));
+    player = new Player(new Vector2(100, stage.getHeight() - 100));
     enemies = new Array<Enemy>();
     enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
     enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
@@ -101,6 +101,7 @@ public class GameController implements Screen {
     screenviewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     screenviewport.apply();
     stage = new ExtendedStageController(screenviewport);
+    ObjectController.setStage(stage);
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
   }

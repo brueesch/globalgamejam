@@ -5,7 +5,7 @@ public enum Element {
   Water,
   Earth,
   Wind,
-  Lighning,
+  Lightning,
   Ice,
   Neutral
 }

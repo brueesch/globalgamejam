@@ -42,6 +42,17 @@ public class ObjectController {
     return result;
   }
   
+  public static ExtendedStageController getStage()
+  {
+    return stage;
+  }
+  
+  public static void setStage(ExtendedStageController newStage)
+  {
+    stage = newStage;
+  }
+  
+  private static ExtendedStageController stage;
   private static int objectId = 0;
   private static Array<Actor> objects = new Array<Actor>();
 }
