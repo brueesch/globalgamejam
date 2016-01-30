@@ -2,6 +2,7 @@ package com.ggj.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -30,6 +31,12 @@ public class GameController implements Screen{
 
 	@Override
 	public void render(float delta) {
+		float delta_time = Gdx.graphics.getDeltaTime();
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		stage.getBatch().setProjectionMatrix(camera.combined);
+		stage.act(delta_time);
+		stage.draw();
 		player.update();
 	}
 
@@ -65,6 +72,7 @@ public class GameController implements Screen{
 	
 	private void createWorld(){
 		player = new Player();
+		stage.addActor(player);
 		skyscraper = new Skyscraper(5, 50, new Vector2(10,10));
 	}
 	
