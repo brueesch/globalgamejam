@@ -90,6 +90,7 @@ public class GameController implements Screen {
     skyscraper = new Skyscraper(GameConfig.SKYSCRAPER_LEVELS,
         GameConfig.SKYSCRAPER_POSITION);
     stage.addActor(skyscraper);
+    game_interface = new GameInterface();
   }
 
   private void setUpGame() {
@@ -101,6 +102,5 @@ public class GameController implements Screen {
 
   private void loadConfigs() {
     new GameConfig();
-    game_interface = new GameInterface();
   }
 }
