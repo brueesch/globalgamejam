@@ -15,24 +15,14 @@ public class Rock extends ActorBase {
     initialize("model/environment/rock/rock.png", GameConfig.SCALE, position);
     setOrigin(0,0);
   }
-  
-  public int getLevel() {
-    return levels;
-  }
-
-  public void setLevel(int level) {
-    this.levels = level;
-  }
 
   public void isHit() {
     if(!deltaSet) {
-      deltaHeight = getHeight() / GameConfig.ROCK_LEVELS * GameConfig.SCALE;
+      deltaHeight = getHeight() / GameConfig.ROCK_LEVELS;
     }
+    levels--;
     setY(getY()-deltaHeight);
     float playerY = ObjectController.getObject(Player.class).getY();
     ObjectController.getObject(Player.class).setY(playerY-deltaHeight);
   }
-
-  //clouds
-
 }
