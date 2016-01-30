@@ -3,6 +3,7 @@ package com.ggj.model;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.ggj.game.GameConfig;
+import com.ggj.game.ObjectController;
 
 public class Rock extends ActorBase {
   private int levels;
@@ -22,8 +23,8 @@ public class Rock extends ActorBase {
   }
 
   public void isHit() {
-        setY(getY()-getHeight()/GameConfig.ROCK_LEVELS);
-
+    setY(getY()-getHeight()/GameConfig.ROCK_LEVELS);
+    ObjectController.getObject(Player.class).setY(getY()-getHeight()/GameConfig.ROCK_LEVELS);
   }
 
 
