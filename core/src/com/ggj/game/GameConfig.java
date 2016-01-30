@@ -17,6 +17,7 @@ public class GameConfig {
   public static float SCALE;
   public static int FLOOR_HEIGHT;
   public static Vector2 BACKGROUND_OFFSET;
+  public static float GROUND_Y_POSITION;
 
   public GameConfig() {
     loadProperties();
@@ -44,6 +45,7 @@ public class GameConfig {
     SCALE = Float.parseFloat(prop.getProperty("scale"));
     FLOOR_HEIGHT = Integer.parseInt(prop.getProperty("floorheight"));
     BACKGROUND_OFFSET = new Vector2(Integer.parseInt(prop.getProperty("background_offset_x")),Integer.parseInt(prop.getProperty("background_offset_y")));
+    GROUND_Y_POSITION = Float.parseFloat(prop.getProperty("ground_y_position"));
   }
 }
 

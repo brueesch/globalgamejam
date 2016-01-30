@@ -66,30 +66,30 @@ public class Background {
   }
 
   private void drawFrontCloud(Batch batch, float parentAlpha) {
-    if(deltaMoveFrontCloud >= regionCloudsFrontImage.getRegionWidth()*GameConfig.SCALE) {
-      deltaMoveFrontCloud=0;
+    if (deltaMoveFrontCloud >= regionCloudsFrontImage.getRegionWidth() * GameConfig.SCALE) {
+      deltaMoveFrontCloud = 0;
     }
     deltaMoveFrontCloud = deltaMoveFrontCloud + parentAlpha * 60;
     batch.draw(regionCloudsFrontImage, deltaMoveFrontCloud, 0, regionCloudsFrontImage.getRegionWidth() * GameConfig.SCALE, regionCloudsFrontImage.getRegionHeight() * GameConfig.SCALE);
-    batch.draw(regionCloudsFrontImage, deltaMoveFrontCloud-(regionCloudsFrontImage.getRegionWidth()*GameConfig.SCALE), 0, regionCloudsFrontImage.getRegionWidth() * GameConfig.SCALE, regionCloudsFrontImage.getRegionHeight() * GameConfig.SCALE);
+    batch.draw(regionCloudsFrontImage, deltaMoveFrontCloud - (regionCloudsFrontImage.getRegionWidth() * GameConfig.SCALE), 0, regionCloudsFrontImage.getRegionWidth() * GameConfig.SCALE, regionCloudsFrontImage.getRegionHeight() * GameConfig.SCALE);
   }
 
   private void drawMiddleCloud(Batch batch, float parentAlpha) {
-    if(deltaMoveMiddleCloud >= regionCloudsMiddleImage.getRegionWidth()*GameConfig.SCALE) {
-      deltaMoveMiddleCloud=0;
+    if (deltaMoveMiddleCloud >= regionCloudsMiddleImage.getRegionWidth() * GameConfig.SCALE) {
+      deltaMoveMiddleCloud = 0;
     }
     deltaMoveMiddleCloud = deltaMoveMiddleCloud + parentAlpha * 30;
     batch.draw(regionCloudsMiddleImage, deltaMoveMiddleCloud, 0, regionCloudsMiddleImage.getRegionWidth() * GameConfig.SCALE, regionCloudsMiddleImage.getRegionHeight() * GameConfig.SCALE);
-    batch.draw(regionCloudsMiddleImage, deltaMoveMiddleCloud-(regionCloudsMiddleImage.getRegionWidth()*GameConfig.SCALE), 0, regionCloudsMiddleImage.getRegionWidth() * GameConfig.SCALE, regionCloudsMiddleImage.getRegionHeight() * GameConfig.SCALE);
+    batch.draw(regionCloudsMiddleImage, deltaMoveMiddleCloud - (regionCloudsMiddleImage.getRegionWidth() * GameConfig.SCALE), 0, regionCloudsMiddleImage.getRegionWidth() * GameConfig.SCALE, regionCloudsMiddleImage.getRegionHeight() * GameConfig.SCALE);
   }
 
   private void drawBehindCloud(Batch batch, float parentAlpha) {
-    if(deltaMoveBehindCloud >= regionCloudsBehindImage.getRegionWidth()*GameConfig.SCALE) {
-      deltaMoveBehindCloud=0;
+    if (deltaMoveBehindCloud >= regionCloudsBehindImage.getRegionWidth() * GameConfig.SCALE) {
+      deltaMoveBehindCloud = 0;
     }
     deltaMoveBehindCloud = deltaMoveBehindCloud + parentAlpha * 10;
     deltaMoveBehindCloud = deltaMoveBehindCloud + parentAlpha * 10;
     batch.draw(regionCloudsBehindImage, deltaMoveBehindCloud, 0, regionCloudsBehindImage.getRegionWidth() * GameConfig.SCALE, regionCloudsBehindImage.getRegionHeight() * GameConfig.SCALE);
-    batch.draw(regionCloudsBehindImage, deltaMoveBehindCloud-(regionCloudsBehindImage.getRegionWidth()*GameConfig.SCALE), 0, regionCloudsBehindImage.getRegionWidth() * GameConfig.SCALE, regionCloudsBehindImage.getRegionHeight() * GameConfig.SCALE);
+    batch.draw(regionCloudsBehindImage, deltaMoveBehindCloud - (regionCloudsBehindImage.getRegionWidth() * GameConfig.SCALE), 0, regionCloudsBehindImage.getRegionWidth() * GameConfig.SCALE, regionCloudsBehindImage.getRegionHeight() * GameConfig.SCALE);
   }
 }

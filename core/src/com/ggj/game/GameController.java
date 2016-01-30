@@ -86,8 +86,8 @@ public class GameController implements Screen {
         GameConfig.ROCK_POSITION);
     player = new Player(new Vector2(75, rock.getHeight()+32*GameConfig.SCALE));
     enemies = new Array<Enemy>();
-    enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
-    enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
+    enemies.add(new Enemy(Element.Fire, new Vector2(1500, 22)));
+    enemies.add(new Enemy(Element.Water, new Vector2(1000, 46)));
     stage.addActor(rock);
     stage.addActor(player);
     for (Enemy enemy : enemies) {

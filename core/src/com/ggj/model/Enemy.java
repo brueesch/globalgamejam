@@ -3,6 +3,8 @@ package com.ggj.model;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.ggj.game.GameConfig;
+import com.ggj.game.GameController;
+import com.ggj.game.ObjectController;
 
 public class Enemy extends ActorBase {
   private int powerlevel;
@@ -52,6 +54,11 @@ public class Enemy extends ActorBase {
   public void act(float delta)
   {
     setPosition(getX() - speed, getY());
+
+    if(this.getBounds().overlaps(ObjectController.getObject(Rock.class).getBounds())) {
+      ObjectController.getObject(Rock.class).isHit();
+      this.remove();
+    }
   }
   
   public void powerUp()
@@ -79,6 +86,7 @@ public class Enemy extends ActorBase {
       if(powerlevel < 3)
       {
         powerlevel++;
+        setY(GameConfig.GROUND_Y_POSITION);
         updateTexture();
       }
     }
@@ -87,6 +95,7 @@ public class Enemy extends ActorBase {
       if(powerlevel > 1)
       {
         powerlevel--;
+        setY(GameConfig.GROUND_Y_POSITION);
         updateTexture();
       }
       else
