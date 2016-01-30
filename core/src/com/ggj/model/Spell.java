@@ -2,12 +2,14 @@ package com.ggj.model;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.ggj.game.GameConfig;
 import com.ggj.game.ObjectController;
 
-public class Spell extends Actor {
+public class Spell extends ActorBase {
   public Spell(Element element, float damage, Vector2 position)
   {
-    id = ObjectController.register(this);
+    initialize("model/enemies/water/water_stage_1.png", GameConfig.SCALE, position);
+    
     this.element = element;
     this.damage = damage;
     this.position = position;

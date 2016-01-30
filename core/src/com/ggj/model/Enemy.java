@@ -1,29 +1,23 @@
 package com.ggj.model;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.ggj.game.ObjectController;
+import com.ggj.game.GameConfig;
 
-public class Enemy extends Actor {
+public class Enemy extends ActorBase {
+  private int powerlevel;
+  private Element element;
+  private float health;
+  private float maxHealth;
+  private float speed;
+  
   public Enemy(Element element, Vector2 position)
   {
     this.element = element;
-    id = ObjectController.register(this);
-    this.setPosition(position.x, position.y);
     health = 10;
     
-    Texture image = new Texture(Gdx.files.internal(getModelName()));
-    region = new TextureRegion(image);
     speed = getSpeed();
-    
-    setWidth(region.getRegionWidth());
-    setHeight(region.getRegionHeight());
-    setOrigin(getWidth()/2, getHeight()/2);
-
-    setScale(scale);
+    super.initialize(getModelName(), GameConfig.SCALE, position);
   }
   
   private String getModelName()
@@ -81,9 +75,6 @@ public class Enemy extends Actor {
     }
   }
   
-  public int getId() {
-    return id;
-  }
   public int getPowerlevel() {
     return powerlevel;
   }
@@ -96,13 +87,4 @@ public class Enemy extends Actor {
   public float getMaxHealth() {
     return maxHealth;
   }
-
-  private int id;
-  private int powerlevel;
-  private Element element;
-  private float health;
-  private float maxHealth;
-  private float speed;
-  private float scale = 2;
-  TextureRegion region;
 }

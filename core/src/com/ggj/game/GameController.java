@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -75,7 +76,7 @@ public class GameController implements Screen {
   }
 
   private void createWorld() {
-    player = new Player();
+    player = new Player(new Vector2(100, 100));
     enemies = new Array<Enemy>();
     enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
     enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
@@ -90,7 +91,7 @@ public class GameController implements Screen {
 
   private void setUpGame() {
     screenviewport = new ScreenViewport();
-    stage = new Stage(screenviewport);
+    stage = new ExtendedStageController(screenviewport);
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
 	}
