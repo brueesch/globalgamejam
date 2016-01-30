@@ -14,11 +14,13 @@ public class GameInterface {
   public GameInterface(){
     font = new BitmapFont(Gdx.files.internal("font/pixel.fnt"));
     player = ObjectController.getObject(Player.class);
+    
+    screen_width = Gdx.graphics.getWidth();
+    screen_height = Gdx.graphics.getHeight();
   }
   
   public void draw(SpriteBatch batch){
-    screen_width = Gdx.graphics.getWidth();
-    screen_height = Gdx.graphics.getHeight();
+
     
     batch.begin();
     font.setColor(0, 0, 0, 1);
