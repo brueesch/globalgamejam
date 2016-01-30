@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.ggj.model.Element;
 import com.ggj.model.Enemy;
 import com.ggj.model.Player;
-import com.ggj.model.Skyscraper;
+import com.ggj.model.Rock;
 
 public class GameController implements Screen {
 
@@ -22,7 +22,7 @@ public class GameController implements Screen {
   private OrthographicCamera camera;
   private Player player;
   private Array<Enemy> enemies;
-  private Skyscraper skyscraper;
+  private Rock skyscraper;
   private GameInterface game_interface;
 
   public GameController(final GlobalGameJam globalgamejam) {
@@ -87,7 +87,7 @@ public class GameController implements Screen {
     for (Enemy enemy : enemies) {
       stage.addActor(enemy);
     }
-    skyscraper = new Skyscraper(GameConfig.SKYSCRAPER_LEVELS,
+    skyscraper = new Rock(GameConfig.SKYSCRAPER_LEVELS,
         GameConfig.SKYSCRAPER_POSITION);
     stage.addActor(skyscraper);
     game_interface = new GameInterface();

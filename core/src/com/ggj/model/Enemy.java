@@ -58,7 +58,6 @@ public class Enemy extends ActorBase {
     if(powerlevel < 3)
     {
       powerlevel++;
-      notify();
     }
   }
   
@@ -67,7 +66,6 @@ public class Enemy extends ActorBase {
     if(powerlevel > 1)
     {
       powerlevel--;
-      notify();
     }
     else
     {
