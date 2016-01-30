@@ -26,7 +26,7 @@ public class GameController implements Screen {
   private GameInterface game_interface;
 
   public GameController(final GlobalGameJam globalgamejam) {
-		loadConfigs();
+    loadConfigs();
     setUpGame();
     createWorld();
   }
@@ -45,7 +45,7 @@ public class GameController implements Screen {
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
     stage.draw();
-    game_interface.draw((SpriteBatch)stage.getBatch());
+    game_interface.draw((SpriteBatch) stage.getBatch());
   }
 
   @Override
@@ -84,11 +84,11 @@ public class GameController implements Screen {
     enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
     enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
     stage.addActor(player);
-    for(Enemy enemy : enemies)
-    {
+    for (Enemy enemy : enemies) {
       stage.addActor(enemy);
     }
-    skyscraper = new Skyscraper(GameConfig.SKYSCRAPER_LEVELS, GameConfig.SKYSCRAPER_POSITION);
+    skyscraper = new Skyscraper(GameConfig.SKYSCRAPER_LEVELS,
+        GameConfig.SKYSCRAPER_POSITION);
     stage.addActor(skyscraper);
   }
 
@@ -100,7 +100,7 @@ public class GameController implements Screen {
   }
 
   private void loadConfigs() {
-	new GameConfig();
-	game_interface = new GameInterface();
+    new GameConfig();
+    game_interface = new GameInterface();
   }
 }
