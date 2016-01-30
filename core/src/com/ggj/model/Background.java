@@ -9,10 +9,4 @@ public class Background extends ActorBase{
   public Background() {
     initialize("model/environment/background/background.png", GameConfig.SCALE, GameConfig.BACKGROUND_OFFSET);
   }
-  
-  @Override
-  public void draw(Batch batch, float parentAlpha) {
-    // TODO Auto-generated method stub
-    super.draw(batch, parentAlpha);
-  }
 }

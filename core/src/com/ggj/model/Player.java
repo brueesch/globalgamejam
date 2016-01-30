@@ -23,6 +23,7 @@ public class Player extends ActorBase {
 
   private void playerInput() {
     if (spell_combos.size >= spell_combo_size) {
+      castSpell();
       spell_combos.clear();
     }
 
@@ -46,5 +47,21 @@ public class Player extends ActorBase {
       spells += spell + "  ";
     }
     return spells;
+  }
+  
+  private void castSpell(){
+    if(spell_combos.get(0).equals("up") && spell_combos.get(1).equals("up") 
+        && spell_combos.get(2).equals("left") && spell_combos.get(3).equals("right")
+        && spell_combos.get(4).equals("down")){
+      System.out.println("Cast Water");
+    }else if(spell_combos.get(0).equals("left") && spell_combos.get(1).equals("right") 
+        && spell_combos.get(2).equals("up") && spell_combos.get(3).equals("down")
+        && spell_combos.get(4).equals("down")){
+      System.out.println("Cast Fire");
+    }else if(spell_combos.get(0).equals("down") && spell_combos.get(1).equals("right") 
+        && spell_combos.get(2).equals("up") && spell_combos.get(3).equals("left")
+        && spell_combos.get(4).equals("down")){
+      System.out.println("Cast Bolt");
+    }
   }
 }

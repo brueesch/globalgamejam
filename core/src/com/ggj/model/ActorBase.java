@@ -6,10 +6,16 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 
 public abstract class ActorBase extends Actor {
   private int id;
-  protected TextureRegion region;
+  protected Array<TextureRegion> regions;
+  protected int region_number = 0;
+  
+  public ActorBase(){
+    regions = new Array<TextureRegion>();
+  }
   
   public void setId(int id)
   {
@@ -23,7 +29,7 @@ public abstract class ActorBase extends Actor {
 
   @Override
   public void draw(Batch batch, float parentAlpha) {
-    batch.draw(region, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+    batch.draw(regions.get(region_number), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
   }
 
   public void initialize(String texturePath, float scale, Vector2 position) {
@@ -31,9 +37,27 @@ public abstract class ActorBase extends Actor {
     initialize(texturePath, scale, position, origin);
   }
   
+  public void initialize(Array<String> texturePaths, float scale, Vector2 position) {
+    TextureRegion region = null;
+    
+    for(String path : texturePaths){
+      Texture image = new Texture(Gdx.files.internal(path));
+      region = new TextureRegion(image);
+      regions.add(region);
+    }
+    
+    setWidth(region.getRegionWidth());
+    setHeight(region.getRegionHeight());
+    setOrigin(getWidth()/2, getHeight()/2);
+    setPosition(position.x, position.y);
+
+    setScale(scale);
+  }
+  
   public void initialize(String texturePath, float scale, Vector2 position, Vector2 origin) {
     Texture image = new Texture(Gdx.files.internal(texturePath));
-    region = new TextureRegion(image);
+    TextureRegion region = new TextureRegion(image);
+    regions.add(region);
     
     setWidth(region.getRegionWidth());
     setHeight(region.getRegionHeight());
