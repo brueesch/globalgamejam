@@ -17,7 +17,7 @@ public class Spell extends ActorBase {
   
   public Spell(Element element, float damage, Vector2 position, Vector2 destination)
   {
-    initialize("model/enemies/water/water_stage_1.png", GameConfig.SCALE, position);
+    initialize("model/enemies/fire/pewpew1.png", GameConfig.SCALE, position);
     
     this.element = element;
     this.damage = damage;
