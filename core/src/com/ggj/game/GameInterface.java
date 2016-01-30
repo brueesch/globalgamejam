@@ -13,7 +13,7 @@ public class GameInterface {
   
   public GameInterface(){
     font = new BitmapFont(Gdx.files.internal("font/pixel.fnt"));
-    player = ObjectController.getPlayer();
+    player = ObjectController.getObject(Player.class);
   }
   
   public void draw(SpriteBatch batch){

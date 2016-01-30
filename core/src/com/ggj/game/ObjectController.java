@@ -3,21 +3,22 @@ package com.ggj.game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.ggj.model.Player;
+import com.ggj.model.Rock;
 
 public class ObjectController {
-  protected static synchronized int register(Actor actor) {
+  public static synchronized int register(Actor actor) {
     objects.add(actor);
     
     return ++objectId;
   }
   
-  protected static Player getPlayer()
+  public static <T> T getObject(Class<T> callee)
   {
     for(Actor actor : objects)
     {
-      if(actor instanceof Player)
+      if(callee.equals(actor.getClass()))
       {
-        return (Player)actor;
+        return (T)actor;
       }
     }
     
