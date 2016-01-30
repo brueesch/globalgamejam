@@ -45,6 +45,7 @@ public class GameController implements Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
+    background.draw(stage.getBatch(), Gdx.graphics.getDeltaTime());
     stage.draw();
     game_interface.draw((SpriteBatch) stage.getBatch());
   }
@@ -87,7 +88,6 @@ public class GameController implements Screen {
     enemies = new Array<Enemy>();
     enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
     enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
-    stage.addActor(background);
     stage.addActor(rock);
     stage.addActor(player);
     for (Enemy enemy : enemies) {
