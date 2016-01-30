@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.ggj.game.GameConfig;
 import com.ggj.game.ObjectController;
 
@@ -17,15 +16,23 @@ public class Spell extends ActorBase {
   
   public Spell(Element element, float damage, Vector2 position, Vector2 destination)
   {
-    initialize("model/enemies/fire/pewpew1.png", GameConfig.SCALE, position);
-    
     this.element = element;
     this.damage = damage;
     this.destination = destination;
     
+    initialize(getModelName(), GameConfig.SCALE, position);
+    
     // Calculate correct y position of the cursor
     this.destination.y = Math.abs(ObjectController.getStage().getHeight() -this.destination.y); 
     this.angle = Math.abs((float)Math.atan(Math.abs(destination.y - position.y) / Math.abs(destination.x - position.x)));
+  }
+  
+  private String getModelName()
+  {
+    String elementName = element.toString().toLowerCase();
+    String result = "model/shots/" + elementName + ".png";
+    
+    return result;
   }
   
   public Element getElement()

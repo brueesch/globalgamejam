@@ -73,8 +73,21 @@ public class Player extends ActorBase {
     if(Gdx.input.isKeyJustPressed(Keys.SPACE)) {
       if(mana >= 4.0f)
       {
-        mana -= 4.0f;
-        shoot(Element.Fire);
+        switch(temp_switch)
+        {
+          case 1:
+            shoot(Element.Water);
+            break;
+          case 2:
+            shoot(Element.Fire);
+            break;
+          case 3:
+            shoot(Element.LightningEarth);
+            temp_switch = 0;
+            break;
+        }
+        temp_switch++;
+        spell_combos.clear();
       }
     }
     if(magic_time){
@@ -86,6 +99,8 @@ public class Player extends ActorBase {
       }
     }
   }
+  
+  private int temp_switch = 1;
   
   private void shoot(Element element) {
     Player player = ObjectController.getObject(Player.class);
