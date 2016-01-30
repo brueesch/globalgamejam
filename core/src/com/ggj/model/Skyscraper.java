@@ -18,7 +18,7 @@ public class Skyscraper extends Actor {
 
     public Skyscraper(int level, int levelHeight, Vector2 position) {
         super();
-        this.id = ObjectController.getNextId();
+		this.id = ObjectController.register(this);
         this.levels = level;
         this.levelHeight = levelHeight;
         this.position = position;
