@@ -66,7 +66,6 @@ public class Player extends ActorBase {
     Spell spell = new Spell(Element.Fire, 10, new Vector2(player.getX(), player.getY()), new Vector2(Gdx.input.getX(), Gdx.input.getY()));
     GameSound.MAGIC_SPELL1.play();
     ObjectController.getStage().addActor(spell);
-    ObjectController.getObject(Rock.class).isHit();
   }
 
   public String getSpellString(){
