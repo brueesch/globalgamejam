@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -31,6 +30,7 @@ public class GameController implements Screen {
     loadConfigs();
     setUpGame();
     createWorld();
+    startSound();
   }
 
   @Override
@@ -91,8 +91,8 @@ public class GameController implements Screen {
     for (Enemy enemy : enemies) {
       stage.addActor(enemy);
     }
-    skyscraper = new Rock(GameConfig.SKYSCRAPER_LEVELS,
-        GameConfig.SKYSCRAPER_POSITION);
+    skyscraper = new Rock(GameConfig.ROCK_LEVELS,
+        GameConfig.ROCK_POSITION);
     stage.addActor(skyscraper);
     game_interface = new GameInterface();
   }
@@ -106,5 +106,9 @@ public class GameController implements Screen {
 
   private void loadConfigs() {
     new GameConfig();
+  }
+
+  private void startSound() {
+    GameSound.BACKGROUND_SOUND.loop();
   }
 }

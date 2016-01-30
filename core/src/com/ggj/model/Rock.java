@@ -3,6 +3,7 @@ package com.ggj.model;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.ggj.game.GameConfig;
+import com.ggj.game.ObjectController;
 
 public class Rock extends ActorBase {
   private int levels;
@@ -28,6 +29,19 @@ public class Rock extends ActorBase {
 
   @Override
   public Actor hit(float x, float y, boolean touchable) {
-    return super.hit(x, y, touchable);
+    setY(getY()-getHeight()/GameConfig.ROCK_LEVELS);
+    //get player
+    //set player position
+
+    // load the drop sound effect and the rain background "music"
+//    dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
+//    rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
+//
+//    // start the playback of the background music immediately
+//    rainMusic.setLooping(true);
+//    rainMusic.play();
+
+
+    return this;
   }
 }
