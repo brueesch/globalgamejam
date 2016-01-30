@@ -43,7 +43,7 @@ public class GameConfig {
     SKYSCRAPER_POSITION = new Vector2(Integer.parseInt(prop.getProperty("positionX")), Integer.parseInt(prop.getProperty("positionY")));
     SCALE = Float.parseFloat(prop.getProperty("scale"));
     FLOOR_HEIGHT = Integer.parseInt(prop.getProperty("floorheight"));
-    BACKGROUND_OFFSET = new Vector2(0,0);
+    BACKGROUND_OFFSET = new Vector2(Integer.parseInt(prop.getProperty("background_offset_x")),Integer.parseInt(prop.getProperty("background_offset_y")));
   }
 }
 
