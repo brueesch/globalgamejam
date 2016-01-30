@@ -63,7 +63,7 @@ public class Player extends ActorBase {
   
   private void shoot(Element element) {
     Player player = ObjectController.getObject(Player.class);
-    Spell spell = new Spell(Element.Fire, 10, new Vector2(player.getX(), player.getY()), new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+    Spell spell = new Spell(element, 10, new Vector2(player.getX(), player.getY()), new Vector2(Gdx.input.getX(), Gdx.input.getY()));
     GameSound.MAGIC_SPELL1.play();
     ObjectController.getStage().addActor(spell);
   }
@@ -92,7 +92,7 @@ public class Player extends ActorBase {
     }else if(spell_combos.get(0).equals("down") && spell_combos.get(1).equals("right") 
         && spell_combos.get(2).equals("up") && spell_combos.get(3).equals("left")
         && spell_combos.get(4).equals("down")){
-      shoot(Element.Lightning);
+      shoot(Element.LightningEarth);
     }
     
     ObjectController.getInterface().clearArrow();

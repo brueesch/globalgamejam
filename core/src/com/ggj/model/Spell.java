@@ -27,9 +27,21 @@ public class Spell extends ActorBase {
     this.destination.y = Math.abs(ObjectController.getStage().getHeight() -this.destination.y); 
     this.angle = Math.abs((float)Math.atan(Math.abs(destination.y - position.y) / Math.abs(destination.x - position.x)));
   }
+  
+  public Element getElement()
+  {
+    return this.element;
+  }
 
   @Override
   public void act(float delta) {
+    checkCollisions();
+    
+    float speed = 100.1f;
+    setPosition(getX() + speed * delta * (float)Math.cos(angle), getY() - speed * delta * (float)Math.sin(angle));
+  }
+
+  private void checkCollisions() {
     List<Enemy> enemies = ObjectController.getList(Enemy.class);
     for(Enemy enemy : enemies)
     {
@@ -39,12 +51,10 @@ public class Spell extends ActorBase {
       {
         // Don't kill the mobs yet until we have a handler for respawn / normal spawn
         //enemy.remove();
+        enemy.hit(this);
         enemy.moveBy(300, 0);
         this.remove();
       }
     }
-    
-    float speed = 100.1f;
-    setPosition(getX() + speed * delta * (float)Math.cos(angle), getY() - speed * delta * (float)Math.sin(angle));
   }
 }

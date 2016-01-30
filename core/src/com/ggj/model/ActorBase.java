@@ -65,6 +65,7 @@ public abstract class ActorBase extends Actor {
   }
   
   public void initialize(String texturePath, float scale, Vector2 position, Vector2 origin) {
+    regions.clear();
     Texture image = new Texture(Gdx.files.internal(texturePath));
     TextureRegion region = new TextureRegion(image);
     regions.add(region);
