@@ -1,6 +1,7 @@
 package com.ggj.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 /**
@@ -8,7 +9,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class GameSound {
 
-  public static Sound BACKGROUND_SOUND = Gdx.audio.newSound(Gdx.files.internal("sounds/background.wav"));
+  public static Music BACKGROUND_SOUND = Gdx.audio.newMusic(Gdx.files.internal("sounds/background.mp3"));
 
   public static Sound EARTH_ENEMY = Gdx.audio.newSound(Gdx.files.internal("sounds/earthEnemy.wav"));
   public static Sound FIRE_ENEMY = Gdx.audio.newSound(Gdx.files.internal("sounds/fireEnemy.wav"));
