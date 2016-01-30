@@ -32,8 +32,10 @@ public class Player extends Actor{
 		setScale(scale);
 	}
 	
-	public void update(){
+	@Override
+	public void act(float delta) {
 		playerInput();
+		super.act(delta);
 	}
 	
 	@Override
