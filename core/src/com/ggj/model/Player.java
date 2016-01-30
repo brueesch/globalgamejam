@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.ggj.game.GameConfig;
+import com.ggj.game.GameSound;
 import com.ggj.game.ObjectController;
 
 public class Player extends ActorBase {
@@ -63,6 +64,7 @@ public class Player extends ActorBase {
   private void shoot(Element element) {
     Player player = ObjectController.getObject(Player.class);
     Spell spell = new Spell(Element.Fire, 10, new Vector2(player.getX(), player.getY()), new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+    GameSound.MAGIC_SPELL1.play();
     ObjectController.getStage().addActor(spell);
   }
 

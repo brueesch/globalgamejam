@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.ggj.model.Background;
@@ -22,7 +21,7 @@ public class GameController implements Screen {
   private OrthographicCamera camera;
   private Player player;
   private Array<Enemy> enemies;
-  private Rock skyscraper;
+  private Rock rock;
   private GameInterface game_interface;
   private Background background;
 
@@ -82,18 +81,18 @@ public class GameController implements Screen {
 
   private void createWorld() {
     background = new Background();
-    player = new Player(new Vector2(100, stage.getHeight() - 100));
+    rock = new Rock(GameConfig.ROCK_LEVELS,
+        GameConfig.ROCK_POSITION);
+    player = new Player(new Vector2(75, rock.getHeight()+32*GameConfig.SCALE));
     enemies = new Array<Enemy>();
     enemies.add(new Enemy(Element.Fire, new Vector2(500, 100)));
     enemies.add(new Enemy(Element.Water, new Vector2(440, 100)));
     stage.addActor(background);
+    stage.addActor(rock);
     stage.addActor(player);
     for (Enemy enemy : enemies) {
       stage.addActor(enemy);
     }
-    skyscraper = new Rock(GameConfig.ROCK_LEVELS,
-        GameConfig.ROCK_POSITION);
-    stage.addActor(skyscraper);
     game_interface = new GameInterface();
     ObjectController.setInterface(game_interface);
   }
