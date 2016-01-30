@@ -41,7 +41,6 @@ public class GameController implements Screen {
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
     stage.draw();
-    player.update();
   }
 
   @Override
