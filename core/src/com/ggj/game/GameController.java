@@ -95,6 +95,7 @@ public class GameController implements Screen {
         GameConfig.ROCK_POSITION);
     stage.addActor(skyscraper);
     game_interface = new GameInterface();
+    ObjectController.setInterface(game_interface);
   }
 
   private void setUpGame() {

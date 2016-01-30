@@ -11,9 +11,9 @@ import com.badlogic.gdx.utils.Array;
 
 public abstract class ActorBase extends Actor {
   private int id;
-  protected Array<TextureRegion> regions;
-  protected int region_number = 0;
   private Rectangle bounds;
+  private Array<TextureRegion> regions;
+  private int region_number = 0;
   
   public ActorBase(){
     regions = new Array<TextureRegion>();
@@ -75,5 +75,17 @@ public abstract class ActorBase extends Actor {
     setPosition(position.x, position.y);
 
     setScale(scale);
+  }
+  
+  public Array<TextureRegion> getRegions(){
+    return regions;
+  }
+  
+  public void setRegion(int region_number){
+    this.region_number = region_number;
+  }
+  
+  public int getRegionNumber(){
+    return region_number;
   }
 }

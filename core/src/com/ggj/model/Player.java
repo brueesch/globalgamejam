@@ -37,15 +37,19 @@ public class Player extends ActorBase {
 
     if (Gdx.input.isKeyJustPressed(Keys.LEFT)) {
       spell_combos.add("left");
+      ObjectController.getInterface().updateArrow();
     }
     if (Gdx.input.isKeyJustPressed(Keys.UP)) {
       spell_combos.add("up");
+      ObjectController.getInterface().updateArrow();
     }
     if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
       spell_combos.add("down");
+      ObjectController.getInterface().updateArrow();
     }
     if (Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
       spell_combos.add("right");
+      ObjectController.getInterface().updateArrow();
     }
     if(Gdx.input.isKeyJustPressed(Keys.SPACE)) {
       if(mana >= 4.0f)
@@ -70,6 +74,10 @@ public class Player extends ActorBase {
     return spells;
   }
   
+  public Array<String> getCombos(){
+    return spell_combos;
+  }
+  
   private void castSpell(){
     if(spell_combos.get(0).equals("up") && spell_combos.get(1).equals("up") 
         && spell_combos.get(2).equals("left") && spell_combos.get(3).equals("right")
@@ -84,5 +92,7 @@ public class Player extends ActorBase {
         && spell_combos.get(4).equals("down")){
       shoot(Element.Lightning);
     }
+    
+    ObjectController.getInterface().clearArrow();
   }
 }

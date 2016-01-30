@@ -52,7 +52,16 @@ public class ObjectController {
     stage = newStage;
   }
   
+  public static void setInterface(GameInterface game_interface){
+    ObjectController.game_interface = game_interface;
+  }
+  
+  public static GameInterface getInterface(){
+    return game_interface;
+  }
+  
   private static ExtendedStageController stage;
+  private static GameInterface game_interface;
   private static int objectId = 0;
   private static Array<Actor> objects = new Array<Actor>();
 }

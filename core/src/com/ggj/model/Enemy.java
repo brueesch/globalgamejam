@@ -43,7 +43,7 @@ public class Enemy extends ActorBase {
   public void draw(Batch batch, float parentAlpha) {
     if(health > 0)
     {
-      batch.draw(regions.get(0), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+      batch.draw(getRegions().get(0), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
   }
   
