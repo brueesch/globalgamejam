@@ -16,15 +16,17 @@ public class Spell extends ActorBase {
   
   public Spell(Element element, float damage, Vector2 position, Vector2 destination)
   {
+    int angle_correcton = 45;
+    
     this.element = element;
     this.damage = damage;
-    this.destination = destination;
+    this.destination = destination.sub(getWidth()/2, getHeight()/2);
     
     initialize(getModelName(), GameConfig.SCALE, position);
     
-    // Calculate correct y position of the cursor
-    this.destination.y = Math.abs(ObjectController.getStage().getHeight() -this.destination.y); 
-    this.angle = Math.abs((float)Math.atan(Math.abs(destination.y - position.y) / Math.abs(destination.x - position.x)));
+    destination.sub(ObjectController.getObject(Player.class).getVectorPosition());
+    destination.nor();
+    setRotation(destination.angle()+angle_correcton);
   }
   
   private String getModelName()
@@ -45,7 +47,7 @@ public class Spell extends ActorBase {
     checkCollisions();
     
     float speed = 100.1f;
-    setPosition(getX() + speed * delta * (float)Math.cos(angle), getY() - speed * delta * (float)Math.sin(angle));
+    setPosition(getX() + speed * delta * destination.x, getY() + speed * delta * destination.y);
   }
 
   private void checkCollisions() {
