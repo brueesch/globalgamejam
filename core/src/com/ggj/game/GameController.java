@@ -32,7 +32,7 @@ public class GameController implements Screen {
   @Override
   public void render(float delta) {
     float delta_time = Gdx.graphics.getDeltaTime();
-    Gdx.gl.glClearColor(0, 0, 0, 1);
+    Gdx.gl.glClearColor(1, 1, 1, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
