@@ -7,6 +7,8 @@ import com.ggj.game.ObjectController;
 
 public class Rock extends ActorBase {
   private int levels;
+  private boolean deltaSet = false;
+  private float deltaHeight;
 
   public Rock(int level, Vector2 position) {
     this.levels = level;
@@ -23,9 +25,14 @@ public class Rock extends ActorBase {
   }
 
   public void isHit() {
-    setY(getY()-getHeight()/GameConfig.ROCK_LEVELS);
-    ObjectController.getObject(Player.class).setY(getY()-getHeight()/GameConfig.ROCK_LEVELS);
+    if(!deltaSet) {
+      deltaHeight = getHeight() / GameConfig.ROCK_LEVELS * GameConfig.SCALE;
+    }
+    setY(getY()-deltaHeight);
+    float playerY = ObjectController.getObject(Player.class).getY();
+    ObjectController.getObject(Player.class).setY(playerY-deltaHeight);
   }
 
+  //clouds
 
 }
