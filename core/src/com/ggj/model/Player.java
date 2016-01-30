@@ -10,7 +10,7 @@ public class Player {
 	private Array<String> spell_combos;
 	
 	public Player(){
-		
+		spell_combos = new Array<String>();
 	}
 	
 	public void update(){
