@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
@@ -12,9 +13,18 @@ public abstract class ActorBase extends Actor {
   private int id;
   protected Array<TextureRegion> regions;
   protected int region_number = 0;
+  private Rectangle bounds;
   
   public ActorBase(){
     regions = new Array<TextureRegion>();
+  }
+  
+  public Rectangle getBounds()
+  {
+    float width = regions.get(0).getRegionWidth();
+    float height = regions.get(0).getRegionHeight();
+    
+    return new Rectangle(getX(), getY(), width * getScaleX(), height * getScaleY());
   }
   
   public void setId(int id)
@@ -61,7 +71,7 @@ public abstract class ActorBase extends Actor {
     
     setWidth(region.getRegionWidth());
     setHeight(region.getRegionHeight());
-    setOrigin(origin.x/2, origin.y/2);
+    setOrigin(origin.x, origin.y);
     setPosition(position.x, position.y);
 
     setScale(scale);
