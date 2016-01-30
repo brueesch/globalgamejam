@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,6 +23,7 @@ public class GameController implements Screen {
   private Player player;
   private Array<Enemy> enemies;
   private Skyscraper skyscraper;
+  private GameInterface game_interface;
 
   public GameController(final GlobalGameJam globalgamejam) {
 		loadConfigs();
@@ -43,6 +45,7 @@ public class GameController implements Screen {
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
     stage.draw();
+    game_interface.draw((SpriteBatch)stage.getBatch());
   }
 
   @Override
@@ -94,9 +97,10 @@ public class GameController implements Screen {
     stage = new ExtendedStageController(screenviewport);
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
-	}
+  }
 
-	private void loadConfigs() {
-		new GameConfig();
+  private void loadConfigs() {
+	new GameConfig();
+	game_interface = new GameInterface();
   }
 }
