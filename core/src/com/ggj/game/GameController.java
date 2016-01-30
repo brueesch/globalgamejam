@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.ggj.model.Background;
 import com.ggj.model.Element;
 import com.ggj.model.Enemy;
@@ -17,7 +17,7 @@ import com.ggj.model.Rock;
 
 public class GameController implements Screen {
 
-  private ScreenViewport screenviewport;
+  private FitViewport screenviewport;
   private Stage stage;
   private OrthographicCamera camera;
   private Player player;
@@ -42,7 +42,7 @@ public class GameController implements Screen {
   @Override
   public void render(float delta) {
     float delta_time = Gdx.graphics.getDeltaTime();
-    Gdx.gl.glClearColor(1, 1, 1, 1);
+    Gdx.gl.glClearColor(0, 0, 0, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     stage.getBatch().setProjectionMatrix(camera.combined);
     stage.act(delta_time);
@@ -52,7 +52,7 @@ public class GameController implements Screen {
 
   @Override
   public void resize(int width, int height) {
-    // TODO Auto-generated method stub
+    screenviewport.update(width, height);
 
   }
 
@@ -98,7 +98,8 @@ public class GameController implements Screen {
   }
 
   private void setUpGame() {
-    screenviewport = new ScreenViewport();
+    screenviewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    screenviewport.apply();
     stage = new ExtendedStageController(screenviewport);
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
