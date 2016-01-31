@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ggj.model.Player;
 import com.ggj.model.Rock;
 
@@ -60,6 +61,15 @@ public class ObjectController {
     return game_interface;
   }
   
+  public static void setViewPort(Viewport port){
+    view_port = port;
+  }
+  
+  public static Viewport getViewPort(){
+    return view_port;
+  }
+  
+  private static Viewport view_port;
   private static ExtendedStageController stage;
   private static GameInterface game_interface;
   private static int objectId = 0;

@@ -21,7 +21,6 @@ public class Spell extends ActorBase {
     this.element = element;
     this.damage = damage;
     this.destination = destination.sub(getWidth()/2, getHeight()/2);
-    
     initialize(getModelName(), GameConfig.SCALE, position);
     
     destination.sub(ObjectController.getObject(Player.class).getVectorPosition());

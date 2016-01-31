@@ -53,7 +53,6 @@ public class GameController implements Screen {
   @Override
   public void resize(int width, int height) {
     screenviewport.update(width, height);
-
   }
 
   @Override
@@ -102,6 +101,7 @@ public class GameController implements Screen {
     screenviewport.apply();
     stage = new ExtendedStageController(screenviewport);
     ObjectController.setStage(stage);
+    ObjectController.setViewPort(screenviewport);
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
   }

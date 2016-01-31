@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ggj.game.GameConfig;
 import com.ggj.game.GameSound;
 import com.ggj.game.ObjectController;
@@ -105,9 +107,10 @@ public class Player extends ActorBase {
   
   private void shoot(Element element) {
     Player player = ObjectController.getObject(Player.class);
-    Vector3 mouse_position = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-    ObjectController.getStage().getCamera().unproject(mouse_position);
-    Spell spell = new Spell(element, 10, getVectorPosition(), new Vector2(mouse_position.x, mouse_position.y));
+    Vector2 mouse_position = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+    FitViewport view_port = (FitViewport) ObjectController.getViewPort();
+    view_port.unproject(mouse_position);
+    Spell spell = new Spell(element, 10, getVectorPosition(), mouse_position);
     GameSound.MAGIC_SPELL1.play();
     ObjectController.getStage().addActor(spell);
   }
