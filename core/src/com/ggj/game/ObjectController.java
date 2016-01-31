@@ -61,6 +61,16 @@ public class ObjectController {
     return game_interface;
   }
   
+  public static void setLevelController(LevelController levelController)
+  {
+    ObjectController.levelController = levelController;
+  }
+  
+  public static LevelController getLevelController()
+  {
+    return levelController;
+  }
+  
   public static void setViewPort(Viewport port){
     view_port = port;
   }
@@ -70,8 +80,10 @@ public class ObjectController {
   }
   
   private static Viewport view_port;
+  
   private static ExtendedStageController stage;
   private static GameInterface game_interface;
+  private static LevelController levelController;
   private static int objectId = 0;
   private static Array<Actor> objects = new Array<Actor>();
 }

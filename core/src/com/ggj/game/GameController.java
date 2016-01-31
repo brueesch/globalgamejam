@@ -19,17 +19,18 @@ public class GameController implements Screen {
   private FitViewport screenviewport;
   private ExtendedStageController stage;
   private OrthographicCamera camera;
-  private Player player;
-  private Array<Enemy> enemies;
-  private Rock rock;
   private GameInterface game_interface;
   private Background background;
+  private LevelController levelController;
+  private Player player;
+  private Rock rock;
 
   public GameController(final GlobalGameJam globalgamejam) {
     loadConfigs();
     setUpGame();
     createWorld();
     startSound();
+    startGame();
   }
 
   @Override
@@ -84,16 +85,18 @@ public class GameController implements Screen {
     rock = new Rock(GameConfig.ROCK_LEVELS,
         GameConfig.ROCK_POSITION);
     player = new Player(new Vector2(75, rock.getHeight()+32*GameConfig.SCALE));
-    enemies = new Array<Enemy>();
-    enemies.add(new Enemy(Element.Fire, new Vector2(1500, 22)));
-    enemies.add(new Enemy(Element.Water, new Vector2(1000, 46)));
+    levelController = new LevelController();
+    ObjectController.setLevelController(levelController);
     stage.addActor(rock);
     stage.addActor(player);
-    for (Enemy enemy : enemies) {
-      stage.addActor(enemy);
-    }
     game_interface = new GameInterface();
     ObjectController.setInterface(game_interface);
+  }
+  
+  private void startGame()
+  {
+    levelController.Reset();
+    levelController.Start(1);
   }
 
   private void setUpGame() {
@@ -102,6 +105,7 @@ public class GameController implements Screen {
     stage = new ExtendedStageController(screenviewport);
     ObjectController.setStage(stage);
     ObjectController.setViewPort(screenviewport);
+    
     Gdx.input.setInputProcessor(stage);
     camera = (OrthographicCamera) stage.getCamera();
   }

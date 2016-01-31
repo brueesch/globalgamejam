@@ -71,6 +71,7 @@ public class Enemy extends ActorBase {
     if(this.getBounds().overlaps(ObjectController.getObject(Rock.class).getBounds())) {
       ObjectController.getObject(Rock.class).isHit();
       this.remove();
+      ObjectController.getLevelController().notifyKill();
     }
     
     if(particle_generator != null){
@@ -118,6 +119,7 @@ public class Enemy extends ActorBase {
       else
       {
         this.remove();
+        ObjectController.getLevelController().notifyKill();
       }
     }
   }

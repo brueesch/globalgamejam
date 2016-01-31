@@ -24,6 +24,7 @@ public class Rock extends ActorBase {
     setY(getY()-deltaHeight);
     float playerY = ObjectController.getObject(Player.class).getY();
     ObjectController.getObject(Player.class).setY(playerY-deltaHeight);
+    ObjectController.getLevelController().CheckSpawnThings();
   }
 
 
