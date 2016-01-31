@@ -37,7 +37,7 @@ public class GameInterface {
     int mana_with = 24;
     height_offset += height_gap;
     height_offset += height_gap;
-    font.draw(batch, "Level:   " + 1, screen_width - width_start + mana_with, screen_height - height_start - height_offset);
+    font.draw(batch, "Level:   " + ObjectController.getLevelController().getLevelNumber(), screen_width - width_start + mana_with, screen_height - height_start - height_offset);
     height_offset += height_gap;
     font.draw(batch, "Life:   " + ObjectController.getObject(Rock.class).getLevels(), screen_width - width_start + mana_with, screen_height - height_start - height_offset);
     height_offset += height_gap;

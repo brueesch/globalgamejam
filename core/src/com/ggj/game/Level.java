@@ -17,10 +17,10 @@ public class Level {
     chanceSpawns = new Hashtable<MonsterLevel, Integer>(); 
   }
   
-  public Level(int totalSpawns, int maxActive, int chance1, int chance2, int chance3)
+  public Level(int totalMaxSpawns, int maxActive, int chance1, int chance2, int chance3)
   {
     this();
-    this.totalSpawns = totalSpawns;
+    this.totalSpawns = totalMaxSpawns;
     this.maxActive = maxActive;
     
     addDifficulty(MonsterLevel.Level1, chance1);
@@ -46,7 +46,7 @@ public class Level {
     return maxActive;
   }
   
-  public void registerKill() {
+  public synchronized void registerKill() {
     killedSpawns++;
     activeSpawns--;
   }
@@ -55,9 +55,8 @@ public class Level {
     return activeSpawns;
   }
   
-  public void spawn() {
+  public synchronized void spawn() {
     activeSpawns++;
-    totalSpawns++;
   }
   
   public int getKilledSpawns()
