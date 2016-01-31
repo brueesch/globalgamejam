@@ -9,20 +9,25 @@ import com.ggj.game.GameConfig;
 
 public class Background {
 
-  private Texture backgroundImage = new Texture(Gdx.files.internal("model/environment/background/background.png"));
-  private Texture cloudsFrontImage = new Texture(Gdx.files.internal("model/environment/background/cloudsFront.png"));
   private TextureRegion regionBackgroundImage;
   private TextureRegion regionCloudsFrontImage;
   private TextureRegion regionCloudsMiddleImage;
   private TextureRegion regionCloudsBehindImage;
   private TextureRegion regionLight1Image;
   private TextureRegion regionLight2Image;
+  private TextureRegion regionLightningDarkImage;
+  private TextureRegion regionLightningLightImage;
   private float deltaMoveBehindCloud;
   private float deltaMoveMiddleCloud;
   private float deltaMoveFrontCloud;
   private float time;
   private float time2;
+  private float time3 = 2;
+  private int awesomeNumber;
+  private int count;
+  private int count2;
   private boolean light1 = true;
+  private boolean lightning = false;
   private float scale = 1f;
   private boolean growing = false;
 
@@ -36,6 +41,8 @@ public class Background {
     initializeCloudBehind("model/environment/background/cloudsBehind.png");
     initializeLight1("model/environment/background/light1.png");
     initializeLight2("model/environment/background/light2.png");
+    initializeLightningDark("model/environment/background/lightningDark.png");
+    initializeLightningLight("model/environment/background/lightningLight.png");
   }
 
 
@@ -70,6 +77,16 @@ public class Background {
     regionLight2Image = new TextureRegion(image);
   }
 
+  public void initializeLightningDark(String texturePath) {
+    Texture image = new Texture(Gdx.files.internal(texturePath));
+    regionLightningDarkImage = new TextureRegion(image);
+  }
+
+  public void initializeLightningLight(String texturePath) {
+    Texture image = new Texture(Gdx.files.internal(texturePath));
+    regionLightningLightImage = new TextureRegion(image);
+  }
+
 
   public void draw(Batch batch, float parentAlpha) {
     batch.begin();
@@ -83,9 +100,34 @@ public class Background {
 
   private void drawBackground(Batch batch, float parentAlpha) {
     time += parentAlpha;
+    time3 -= parentAlpha;
+
     batch.draw(regionBackgroundImage, 0, 0, regionBackgroundImage.getRegionWidth() * GameConfig.SCALE, regionBackgroundImage.getRegionHeight() * GameConfig.SCALE);
 
-    if(time >= 0.1f && time2 <=0.1f) {
+    if (time3 <= 0.1f) {
+      count++;
+      count2++;
+
+      if (count <= Math.random() * 400) {
+        batch.draw(regionLightningDarkImage, 0, 0, regionLightningDarkImage.getRegionWidth() * GameConfig.SCALE, regionLightningDarkImage.getRegionHeight() * GameConfig.SCALE);
+      } else {
+        batch.draw(regionLightningLightImage, 0, 0, regionLightningLightImage.getRegionWidth() * GameConfig.SCALE, regionLightningLightImage.getRegionHeight() * GameConfig.SCALE);
+      }
+      if (count2 >= awesomeNumber) {
+        count2 = 0;
+        count = 0;
+        time3 = (int)Math.random()*10;
+        int number = (int) Math.random() * 800;
+        if (number <= 200) {
+          awesomeNumber = 200;
+        } else {
+          awesomeNumber = number;
+        }
+      }
+    }
+
+
+    if (time >= 0.1f && time2 <= 0.1f) {
       if (scale <= 0.1f) {
         growing = true;
         light1 = !light1;
@@ -102,15 +144,16 @@ public class Background {
       time = 0;
     }
 
-    if(scale >= 0.9f) {
-      time2= (float)Math.random() * 4;
+    if (scale >= 0.9f) {
+      time2 = (float) Math.random() * 4;
     }
 
     time2 -= parentAlpha;
 
+
     Color color = batch.getColor();
     float oldAlpha = color.a;
-    color.a = oldAlpha*scale;
+    color.a = oldAlpha * scale;
     batch.setColor(color);
 
     if (light1) {
