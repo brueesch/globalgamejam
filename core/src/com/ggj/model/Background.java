@@ -118,8 +118,8 @@ public class Background {
         count = 0;
         time3 = (int)Math.random()*10;
         int number = (int) Math.random() * 800;
-        if (number <= 200) {
-          awesomeNumber = 200;
+        if (number <= 100) {
+          awesomeNumber = 100;
         } else {
           awesomeNumber = number;
         }
