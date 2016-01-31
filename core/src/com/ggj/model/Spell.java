@@ -45,7 +45,7 @@ public class Spell extends ActorBase {
   public void act(float delta) {
     checkCollisions();
     
-    float speed = 100.1f;
+    float speed = 200.1f;
     setPosition(getX() + speed * delta * destination.x, getY() + speed * delta * destination.y);
   }
 

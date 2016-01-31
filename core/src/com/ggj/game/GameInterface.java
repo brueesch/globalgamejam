@@ -35,11 +35,11 @@ public class GameInterface {
     int with_offset = 170;
     int height_offset = -18;
     int mana_with = 24;
+    height_offset += height_gap;
+    height_offset += height_gap;
     font.draw(batch, "Level:   " + 1, screen_width - width_start + mana_with, screen_height - height_start - height_offset);
     height_offset += height_gap;
     font.draw(batch, "Life:   " + ObjectController.getObject(Rock.class).getLevels(), screen_width - width_start + mana_with, screen_height - height_start - height_offset);
-    height_offset += height_gap;
-    font.draw(batch, "Mana:   " + player.getMana(), screen_width - width_start + mana_with, screen_height - height_start - height_offset);
     height_offset += height_gap;
     font.draw(batch, "Water", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
     height_offset += height_gap;
@@ -56,6 +56,7 @@ public class GameInterface {
     
     arrows = new Array<Arrow>();
     
+    height_offset += height_gap;
     height_offset += height_gap;
     height_offset += height_gap;
     height_offset += height_gap;

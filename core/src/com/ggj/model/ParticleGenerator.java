@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class ParticleGenerator {
-  private int particle_number = 200;
+  private int particle_number = 100;
   private float particle_create_speed = 20;
   private float particle_create_time = 0.2f;
   

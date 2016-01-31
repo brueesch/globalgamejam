@@ -9,7 +9,7 @@ import com.ggj.game.ObjectController;
 public class Particle extends ActorBase {
   private float speed = 50;
   private float alpha_speed = 1f;
-  private float random_box = 40;
+  private float random_box = 30;
   
   private float alpha = 0;
   private boolean finished = true;
@@ -41,7 +41,7 @@ public class Particle extends ActorBase {
   public void createParticle(Vector2 position){
     finished = false;
     int random_x = (int)(Math.random() * random_box);
-    float random_size = (float)Math.random();
+    float random_size = (float)Math.random() * 2;
     setX(position.x + random_x);
     setY(position.y);
     setScale(random_size);
