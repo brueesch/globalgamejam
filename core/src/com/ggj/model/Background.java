@@ -108,7 +108,7 @@ public class Background {
       count++;
       count2++;
 
-      if (count <= Math.random() * 400) {
+      if (count <= Math.random() * 50) {
         batch.draw(regionLightningDarkImage, 0, 0, regionLightningDarkImage.getRegionWidth() * GameConfig.SCALE, regionLightningDarkImage.getRegionHeight() * GameConfig.SCALE);
       } else {
         batch.draw(regionLightningLightImage, 0, 0, regionLightningLightImage.getRegionWidth() * GameConfig.SCALE, regionLightningLightImage.getRegionHeight() * GameConfig.SCALE);
@@ -116,10 +116,10 @@ public class Background {
       if (count2 >= awesomeNumber) {
         count2 = 0;
         count = 0;
-        time3 = 7;
-        int number = (int) Math.random() * 800;
-        if (number <= 400) {
-          awesomeNumber = 300;
+        time3 = 10;
+        int number = (int) Math.random() * 400;
+        if (number <= 30) {
+          awesomeNumber = 30;
         } else {
           awesomeNumber = number;
         }
