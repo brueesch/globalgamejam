@@ -73,26 +73,6 @@ public class Player extends ActorBase {
       setRegion(4);
       magic_time = true;
     }
-    if(Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-      if(mana >= 4.0f)
-      {
-        switch(temp_switch)
-        {
-          case 1:
-            shoot(Element.Water);
-            break;
-          case 2:
-            shoot(Element.Fire);
-            break;
-          case 3:
-            shoot(Element.LightningEarth);
-            temp_switch = 0;
-            break;
-        }
-        temp_switch++;
-        spell_combos.clear();
-      }
-    }
     if(magic_time){
       magic_time_accumulator += Gdx.graphics.getDeltaTime();
       if(magic_time_accumulator > spell_time){
