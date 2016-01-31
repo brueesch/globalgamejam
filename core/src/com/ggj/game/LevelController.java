@@ -116,7 +116,7 @@ public class LevelController {
     }
   }
 
-  public void notifyKill(ActorBase actor) {
+  public synchronized void notifyKill(ActorBase actor) {
     this.levels.get(levelNumber - 1).registerKill();
     CheckSpawnThings();
     ObjectController.unregister(actor);
