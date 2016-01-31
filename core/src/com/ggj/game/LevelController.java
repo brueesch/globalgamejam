@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import com.ggj.model.ActorBase;
 import com.ggj.model.Element;
 import com.ggj.model.Enemy;
 import com.ggj.model.Player;
@@ -80,8 +82,10 @@ public class LevelController {
     }
   }
 
-  public void notifyKill() {
+  public void notifyKill(ActorBase actor) {
     this.levels.get(levelNumber).registerKill();
     CheckSpawnThings();
+    ObjectController.unregister(actor);
+    actor.dispose();
   }
 }

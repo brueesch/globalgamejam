@@ -2,7 +2,9 @@ package com.ggj.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import com.ggj.game.ObjectController;
 
 public class ParticleGenerator {
   private int particle_number = 100;
@@ -29,6 +31,13 @@ public class ParticleGenerator {
       particle_create_accumulator = 0;
       Particle particle = findFreeParticle();
       particle.createParticle(new Vector2(actor.getX(), actor.getY()));
+    }
+  }
+
+  public void dispose()
+  {    
+    for (ActorBase particle : particles) {
+      particle.dispose();
     }
   }
   

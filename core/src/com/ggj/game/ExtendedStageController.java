@@ -17,8 +17,15 @@ public class ExtendedStageController extends Stage {
     super.addActor(actor);
     if(actor instanceof ActorBase)
     {
-      int id = ObjectController.register(actor);
-      ((ActorBase)actor).setId(id);
+      ActorBase actorBase = (ActorBase)actor;
+      int id = ObjectController.register(actorBase);
+      actorBase.setId(id);
     }
+  }
+  
+  void removeActor(ActorBase actor)
+  {
+    ObjectController.unregister(actor);
+    actor = null;
   }
 }

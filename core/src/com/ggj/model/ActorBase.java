@@ -86,6 +86,16 @@ public abstract class ActorBase extends Actor {
     setScale(scale);
   }
   
+  public void dispose()
+  {
+    for(int i=0;i<regions.size;i++)
+    {
+      TextureRegion region = regions.get(i);
+      region.getTexture().dispose();
+      region = null;
+    }
+  }
+  
   public Array<TextureRegion> getRegions(){
     return regions;
   }

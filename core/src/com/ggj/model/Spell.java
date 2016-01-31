@@ -60,7 +60,7 @@ public class Spell extends ActorBase {
         // Don't kill the mobs yet until we have a handler for respawn / normal spawn
         //enemy.remove();
         enemy.hit(this);
-        enemy.moveBy(300, 0);
+        //enemy.moveBy(300, 0);
         this.remove();
       }
     }

@@ -6,14 +6,26 @@ import java.util.List;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ggj.model.ActorBase;
 import com.ggj.model.Player;
 import com.ggj.model.Rock;
 
 public class ObjectController {
-  public static synchronized int register(Actor actor) {
+  public static synchronized int register(ActorBase actor) {
     objects.add(actor);
     
     return ++objectId;
+  }
+  
+  public static synchronized void unregister(ActorBase actor) {
+    for(int i=0;i<objects.size;i++)
+    {
+      if(((ActorBase)objects.get(i)).getId() == actor.getId())
+      {
+        objects.removeIndex(i);
+        break;
+      }
+    }
   }
   
   public static <T> T getObject(Class<T> callee)
@@ -85,5 +97,5 @@ public class ObjectController {
   private static GameInterface game_interface;
   private static LevelController levelController;
   private static int objectId = 0;
-  private static Array<Actor> objects = new Array<Actor>();
+  private static Array<ActorBase> objects = new Array<ActorBase>();
 }
