@@ -49,25 +49,25 @@ public class Player extends ActorBase {
       spell_combos.clear();
     }
 
-    if (Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+    if (Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
       spell_combos.add("left");
       ObjectController.getInterface().updateArrow();
       setRegion(1);
       magic_time = true;
     }
-    if (Gdx.input.isKeyJustPressed(Keys.UP)) {
+    if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
       spell_combos.add("up");
       ObjectController.getInterface().updateArrow();
       setRegion(2);
       magic_time = true;
     }
-    if (Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+    if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
       spell_combos.add("down");
       ObjectController.getInterface().updateArrow();
       setRegion(3);
       magic_time = true;
     }
-    if (Gdx.input.isKeyJustPressed(Keys.RIGHT)) {
+    if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
       spell_combos.add("right");
       ObjectController.getInterface().updateArrow();
       setRegion(4);

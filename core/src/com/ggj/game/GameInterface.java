@@ -30,7 +30,7 @@ public class GameInterface {
   
   public void draw(SpriteBatch batch){
     batch.begin();
-    font.setColor(0, 0, 0, 1);
+    font.setColor(1, 1, 1, 1);
     int with_offset = 170;
     int height_offset = -18;
     int mana_with = 24;
