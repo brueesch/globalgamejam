@@ -1,3 +1,10 @@
+/**
+ * Please do not look at the code. It is weird. Just Because.
+ *
+ * And also I'm Batman
+ * And king bob
+ *
+ */
 package com.ggj.model;
 
 import com.badlogic.gdx.Gdx;
@@ -6,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.ggj.game.GameConfig;
+import com.ggj.game.GameSound;
 
 public class Background {
 
@@ -110,10 +118,12 @@ public class Background {
 
       if (count <= Math.random() * 50) {
         batch.draw(regionLightningDarkImage, 0, 0, regionLightningDarkImage.getRegionWidth() * GameConfig.SCALE, regionLightningDarkImage.getRegionHeight() * GameConfig.SCALE);
+        GameSound.LIGHTNING.play();
       } else {
         batch.draw(regionLightningLightImage, 0, 0, regionLightningLightImage.getRegionWidth() * GameConfig.SCALE, regionLightningLightImage.getRegionHeight() * GameConfig.SCALE);
       }
       if (count2 >= awesomeNumber) {
+        GameSound.LIGHTNING.stop();
         count2 = 0;
         count = 0;
         time3 = 10;

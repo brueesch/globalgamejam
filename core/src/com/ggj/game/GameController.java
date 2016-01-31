@@ -119,6 +119,7 @@ public class GameController implements Screen {
 
   private void startSound() {
     GameSound.BACKGROUND_SOUND.setLooping(true);
+    GameSound.BACKGROUND_SOUND.setVolume(0.2f);
     GameSound.BACKGROUND_SOUND.play();
   }
 }

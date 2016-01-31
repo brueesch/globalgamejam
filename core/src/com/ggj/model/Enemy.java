@@ -1,7 +1,9 @@
 package com.ggj.model;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.ggj.game.GameConfig;
+import com.ggj.game.GameSound;
 import com.ggj.game.ObjectController;
 
 public class Enemy extends ActorBase {
@@ -14,27 +16,32 @@ public class Enemy extends ActorBase {
   private int animation = 1;
   private float animation_time = 0.2f;
   private float animation_accumulator = 0;
+  private Sound sound;
   
   public Enemy(Element element, Vector2 position)
   {
     this.element = element;
     health = 10;
     powerlevel = 1;
-    
     speed = getSpeed();
     super.initialize(getModelName(), GameConfig.SCALE, position, new Vector2(0, 0));
-    
+
     String particle_image_path = "";
     if(element.equals(Element.Fire)){
+      sound = GameSound.FIRE_ENEMY;
       particle_image_path = "model/enemies/fire/particle.png";
     }else if(element.equals(Element.Water)){
+      sound = GameSound.WATER_ENEMIY;
       particle_image_path = "model/enemies/water/particle.png";
+    } else if (element.equals(Element.LightningEarth)) {
+      sound = GameSound.LIGHTNING_ENEMY;
     }
+    sound.loop();
     if(!particle_image_path.equals("")){
       particle_generator = new ParticleGenerator(particle_image_path, this);
     }
   }
-  
+
   private String getModelName()
   {
     if(animation > 3){
@@ -64,6 +71,7 @@ public class Enemy extends ActorBase {
 
     if(this.getBounds().overlaps(ObjectController.getObject(Rock.class).getBounds())) {
       ObjectController.getObject(Rock.class).isHit();
+      GameSound.EXPLOSION.play();
       killMe();
     }
     
@@ -122,6 +130,7 @@ public class Enemy extends ActorBase {
   }
 
   private void killMe() {
+    sound.stop();
     this.remove();
     if(particle_generator != null)
     {
