@@ -1,11 +1,7 @@
 package com.ggj.model;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.ggj.game.GameConfig;
-import com.ggj.game.GameController;
 import com.ggj.game.ObjectController;
 
 public class Enemy extends ActorBase {
@@ -23,7 +19,7 @@ public class Enemy extends ActorBase {
     powerlevel = 1;
     
     speed = getSpeed();
-    super.initialize(getModelName(), GameConfig.SCALE, position);
+    super.initialize(getModelName(), GameConfig.SCALE, position, new Vector2(0, 0));
     
     String particle_image_path = "";
     if(element.equals(Element.Fire)){
@@ -52,14 +48,6 @@ public class Enemy extends ActorBase {
         return 45f;
       default:
         return 25f;
-    }
-  }
-  
-  @Override
-  public void draw(Batch batch, float parentAlpha) {
-    if(health > 0)
-    {
-      batch.draw(getRegions().get(0), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
   }
   
@@ -103,7 +91,6 @@ public class Enemy extends ActorBase {
       if(powerlevel < 3)
       {
         powerlevel++;
-        setY(GameConfig.GROUND_Y_POSITION);
         updateTexture();
       }
     }
@@ -112,7 +99,6 @@ public class Enemy extends ActorBase {
       if(powerlevel > 1)
       {
         powerlevel--;
-        setY(GameConfig.GROUND_Y_POSITION);
         updateTexture();
       }
       else
@@ -132,7 +118,7 @@ public class Enemy extends ActorBase {
   }
   
   private void updateTexture() {
-    super.initialize(getModelName(), GameConfig.SCALE, new Vector2(getX(), getY()));
+    super.initialize(getModelName(), GameConfig.SCALE, new Vector2(getX(), getY()), new Vector2(0,0));
   }
 
   public int getPowerlevel() {
