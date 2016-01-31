@@ -7,9 +7,9 @@ import com.ggj.game.ObjectController;
 
 public class Rock extends ActorBase {
   private int levels;
+
   private boolean deltaSet = false;
   private float deltaHeight;
-
   public Rock(int level, Vector2 position) {
     this.levels = level;
     initialize("model/environment/rock/rock.png", GameConfig.SCALE, position);
@@ -24,5 +24,11 @@ public class Rock extends ActorBase {
     setY(getY()-deltaHeight);
     float playerY = ObjectController.getObject(Player.class).getY();
     ObjectController.getObject(Player.class).setY(playerY-deltaHeight);
+  }
+
+
+
+  public int getLevels() {
+    return levels;
   }
 }

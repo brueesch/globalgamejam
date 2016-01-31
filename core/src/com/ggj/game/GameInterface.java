@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.ggj.model.Arrow;
 import com.ggj.model.Player;
+import com.ggj.model.Rock;
 
 public class GameInterface {
   private static BitmapFont font;
@@ -14,7 +15,7 @@ public class GameInterface {
   private int screen_height;
   private Player player;
   private Array<Arrow> arrows;
-  private int height_start = 140;
+  private int height_start = 40;
   private int width_start = 300;
   private int height_gap = 40;
   
@@ -34,6 +35,10 @@ public class GameInterface {
     int with_offset = 170;
     int height_offset = -18;
     int mana_with = 24;
+    font.draw(batch, "Level:   " + 1, screen_width - width_start + mana_with, screen_height - height_start - height_offset);
+    height_offset += height_gap;
+    font.draw(batch, "Life:   " + ObjectController.getObject(Rock.class).getLevels(), screen_width - width_start + mana_with, screen_height - height_start - height_offset);
+    height_offset += height_gap;
     font.draw(batch, "Mana:   " + player.getMana(), screen_width - width_start + mana_with, screen_height - height_start - height_offset);
     height_offset += height_gap;
     font.draw(batch, "Water", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
@@ -51,6 +56,8 @@ public class GameInterface {
     
     arrows = new Array<Arrow>();
     
+    height_offset += height_gap;
+    height_offset += height_gap;
     height_offset += height_gap;
     arrows.add(new Arrow(new Vector2(screen_width - width_offset, screen_height - height_offset), "up", 0));
     width_offset -= width_gap;
