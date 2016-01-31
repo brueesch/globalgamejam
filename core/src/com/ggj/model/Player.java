@@ -49,36 +49,42 @@ public class Player extends ActorBase {
       spell_combos.clear();
     }
 
-    if (Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
-      spell_combos.add("left");
-      ObjectController.getInterface().updateArrow();
-      setRegion(1);
-      magic_time = true;
-    }
-    if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
-      spell_combos.add("up");
-      ObjectController.getInterface().updateArrow();
-      setRegion(2);
-      magic_time = true;
-    }
-    if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
-      spell_combos.add("down");
-      ObjectController.getInterface().updateArrow();
-      setRegion(3);
-      magic_time = true;
-    }
-    if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
-      spell_combos.add("right");
-      ObjectController.getInterface().updateArrow();
-      setRegion(4);
-      magic_time = true;
-    }
-    if(magic_time){
-      magic_time_accumulator += Gdx.graphics.getDeltaTime();
-      if(magic_time_accumulator > spell_time){
-        setRegion(0);
-        magic_time = false;
-        magic_time_accumulator = 0;
+    if(!ObjectController.getInterface().isGameOver()){
+      if (Gdx.input.isKeyJustPressed(Keys.LEFT) || Gdx.input.isKeyJustPressed(Keys.A)) {
+        spell_combos.add("left");
+        ObjectController.getInterface().updateArrow();
+        setRegion(1);
+        magic_time = true;
+      }
+      if (Gdx.input.isKeyJustPressed(Keys.UP) || Gdx.input.isKeyJustPressed(Keys.W)) {
+        spell_combos.add("up");
+        ObjectController.getInterface().updateArrow();
+        setRegion(2);
+        magic_time = true;
+      }
+      if (Gdx.input.isKeyJustPressed(Keys.DOWN) || Gdx.input.isKeyJustPressed(Keys.S)) {
+        spell_combos.add("down");
+        ObjectController.getInterface().updateArrow();
+        setRegion(3);
+        magic_time = true;
+      }
+      if (Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.D)) {
+        spell_combos.add("right");
+        ObjectController.getInterface().updateArrow();
+        setRegion(4);
+        magic_time = true;
+      }
+      if(magic_time){
+        magic_time_accumulator += Gdx.graphics.getDeltaTime();
+        if(magic_time_accumulator > spell_time){
+          setRegion(0);
+          magic_time = false;
+          magic_time_accumulator = 0;
+        }
+      }
+    }else{
+      if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+        Gdx.app.exit();
       }
     }
   }

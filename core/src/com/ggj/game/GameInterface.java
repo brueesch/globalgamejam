@@ -1,6 +1,7 @@
 package com.ggj.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -18,9 +19,12 @@ public class GameInterface {
   private int height_start = 40;
   private int width_start = 300;
   private int height_gap = 40;
+  private boolean gameover = false;
+  private Texture gameover_image;
   
   public GameInterface(){
     font = new BitmapFont(Gdx.files.internal("font/pixel.fnt"));
+    gameover_image = new Texture(Gdx.files.internal("gameover.png"));
     player = ObjectController.getObject(Player.class);
     
     screen_width = Gdx.graphics.getWidth();
@@ -46,7 +50,14 @@ public class GameInterface {
     font.draw(batch, "Fire", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
     height_offset += height_gap;
     font.draw(batch, "Earth", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
+    if(gameover){
+      batch.draw(gameover_image, -150, 0, gameover_image.getWidth()*2, gameover_image.getHeight()*2);
+    }
     batch.end();
+    
+    if(ObjectController.getObject(Rock.class).getLevels() < 1){
+      gameover = true;
+    }
   }
   
   private void createArrows(){
@@ -141,5 +152,9 @@ public class GameInterface {
       arrow.setActivation(false);
       ObjectController.getObject(Player.class).getCombos().clear();
     }
+  }
+  
+  public boolean isGameOver(){
+    return gameover;
   }
 }

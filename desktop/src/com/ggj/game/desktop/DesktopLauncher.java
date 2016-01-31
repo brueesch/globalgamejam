@@ -12,6 +12,7 @@ public class DesktopLauncher {
     LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
     config.width = (int)(512f * scale);
     config.height = (int)(192f * scale);
+    config.title = "DANGER ZONE!";
     new LwjglApplication(new GlobalGameJam(), config);
   }
 }
