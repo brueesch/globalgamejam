@@ -116,10 +116,10 @@ public class Background {
       if (count2 >= awesomeNumber) {
         count2 = 0;
         count = 0;
-        time3 = (int)Math.random()*10;
+        time3 = 7;
         int number = (int) Math.random() * 800;
-        if (number <= 200) {
-          awesomeNumber = 200;
+        if (number <= 400) {
+          awesomeNumber = 300;
         } else {
           awesomeNumber = number;
         }
