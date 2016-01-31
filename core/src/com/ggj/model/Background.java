@@ -145,7 +145,7 @@ public class Background {
     }
 
     if (scale >= 0.9f) {
-      time2 = (float) Math.random() * 4;
+      time2 = (float) Math.random() * 1;
     }
 
     time2 -= parentAlpha;
