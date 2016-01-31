@@ -11,6 +11,9 @@ public class Enemy extends ActorBase {
   private float maxHealth;
   private float speed;
   private ParticleGenerator particle_generator;
+  private int animation = 1;
+  private float animation_time = 0.2f;
+  private float animation_accumulator = 0;
   
   public Enemy(Element element, Vector2 position)
   {
@@ -34,8 +37,11 @@ public class Enemy extends ActorBase {
   
   private String getModelName()
   {
+    if(animation > 3){
+      animation = 1;
+    }
     String elementName = element.toString().toLowerCase();
-    String result = "model/enemies/" + elementName + "/" + elementName + "_stage_" + powerlevel + ".png";
+    String result = "model/enemies/" + elementName + "/" + elementName + "_stage_" + powerlevel + "_" + animation + ".png";
     
     return result;
   }
@@ -63,6 +69,13 @@ public class Enemy extends ActorBase {
     
     if(particle_generator != null){
       particle_generator.update();
+    }
+    
+    animation_accumulator += delta;
+    if(animation_accumulator > animation_time){
+      animation_accumulator = 0;
+      animation++;
+      updateTexture();
     }
   }
   
