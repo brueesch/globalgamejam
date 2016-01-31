@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.ggj.model.Background;
 import com.ggj.model.Element;
@@ -95,7 +97,16 @@ public class GameController implements Screen {
   
   private void startGame()
   {
-    Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+    Timer timer = new Timer();
+    timer.scheduleTask(new Task() {
+
+      @Override
+      public void run() {
+        // TODO Auto-generated method stub
+        Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+      }
+      
+    }, 0.2f);
     levelController.Reset();
     levelController.Start(1);
   }
