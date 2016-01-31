@@ -20,7 +20,7 @@ public class LevelController {
     levels.add(new Level(5, 3, 80, 20, 1));
     levels.add(new Level(6, 4, 65, 30, 5));
     levels.add(new Level(8, 5, 40, 50, 10));
-    levels.add(new Level(50, 50, 0, 0, 100));
+    levels.add(new Level(50, 25, 0, 0, 100));
   }
   
   public void Start(int levelNumber) {
@@ -68,9 +68,9 @@ public class LevelController {
           {
             for(Enemy spawnedEnemy : ObjectController.getList(Enemy.class))
             {
-              if(spawnedEnemy.getX() - spawnStart > 150f)
+              if(spawnedEnemy.getX() - spawnStart > 250f)
               {
-                spawnStart += 150f;
+                spawnStart += 250f;
                 recalculate = true;
               }
             }

@@ -91,13 +91,11 @@ public class GameController implements Screen {
     stage.addActor(player);
     game_interface = new GameInterface();
     ObjectController.setInterface(game_interface);
-    
-    //make window full sized
-    //Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
   }
   
   private void startGame()
   {
+    Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
     levelController.Reset();
     levelController.Start(1);
   }
