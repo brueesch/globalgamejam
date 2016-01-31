@@ -1,5 +1,7 @@
 package com.ggj.model;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.ggj.game.GameConfig;
@@ -12,6 +14,7 @@ public class Enemy extends ActorBase {
   private float health;
   private float maxHealth;
   private float speed;
+  private ParticleGenerator particle_generator;
   
   public Enemy(Element element, Vector2 position)
   {
@@ -21,6 +24,16 @@ public class Enemy extends ActorBase {
     
     speed = getSpeed();
     super.initialize(getModelName(), GameConfig.SCALE, position);
+    
+    String particle_image_path = "";
+    if(element.equals(Element.Fire)){
+      particle_image_path = "model/enemies/fire/particle.png";
+    }else if(element.equals(Element.Water)){
+      particle_image_path = "model/enemies/water/particle.png";
+    }
+    if(!particle_image_path.equals("")){
+      particle_generator = new ParticleGenerator(particle_image_path, this);
+    }
   }
   
   private String getModelName()
@@ -58,6 +71,10 @@ public class Enemy extends ActorBase {
     if(this.getBounds().overlaps(ObjectController.getObject(Rock.class).getBounds())) {
       ObjectController.getObject(Rock.class).isHit();
       this.remove();
+    }
+    
+    if(particle_generator != null){
+      particle_generator.update();
     }
   }
   
