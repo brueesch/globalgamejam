@@ -1,5 +1,6 @@
 package com.ggj.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 import java.io.FileInputStream;
@@ -32,7 +33,7 @@ public class GameConfig {
   }
 
   private void loadPropertiesFile() throws IOException {
-    InputStream input = new FileInputStream("config.properties");
+    InputStream input = Gdx.files.internal("config.properties").read();
     Properties prop = new Properties();
     prop.load(input);
     fillVariables(prop);
