@@ -49,9 +49,9 @@ public class Enemy extends ActorBase {
     switch(element)
     {
       case Fire :
-        return 0.9f;
+        return 45f;
       default:
-        return 0.5f;
+        return 25f;
     }
   }
   
@@ -66,7 +66,7 @@ public class Enemy extends ActorBase {
   @Override
   public void act(float delta)
   {
-    setPosition(getX() - speed, getY());
+    setPosition(getX() - speed * delta, getY());
 
     if(this.getBounds().overlaps(ObjectController.getObject(Rock.class).getBounds())) {
       ObjectController.getObject(Rock.class).isHit();
