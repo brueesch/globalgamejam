@@ -36,7 +36,8 @@ public class Enemy extends ActorBase {
     } else if (element.equals(Element.LightningEarth)) {
       sound = GameSound.LIGHTNING_ENEMY;
     }
-    sound.loop();
+
+    sound.loop(0.3f);
     if(!particle_image_path.equals("")){
       particle_generator = new ParticleGenerator(particle_image_path, this);
     }
