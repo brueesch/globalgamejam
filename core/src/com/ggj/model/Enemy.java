@@ -17,7 +17,12 @@ public class Enemy extends ActorBase {
   private float animation_time = 0.2f;
   private float animation_accumulator = 0;
   private Sound sound;
-  
+
+  public Enemy(Element element, Vector2 position, int power)
+  {
+    this(element, position);
+    powerlevel = power;
+  }
   public Enemy(Element element, Vector2 position)
   {
     this.element = element;

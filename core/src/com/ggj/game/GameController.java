@@ -93,7 +93,7 @@ public class GameController implements Screen {
     ObjectController.setInterface(game_interface);
     
     //make window full sized
-    Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+    //Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
   }
   
   private void startGame()
