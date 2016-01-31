@@ -32,7 +32,7 @@ public class GameConfig {
   }
 
   private void loadPropertiesFile() throws IOException {
-    InputStream input = new FileInputStream("../../config.properties");
+    InputStream input = new FileInputStream("config.properties");
     Properties prop = new Properties();
     prop.load(input);
     fillVariables(prop);
