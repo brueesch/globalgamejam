@@ -1,6 +1,7 @@
 package com.ggj.model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,9 +15,16 @@ public class Background {
   private TextureRegion regionCloudsFrontImage;
   private TextureRegion regionCloudsMiddleImage;
   private TextureRegion regionCloudsBehindImage;
+  private TextureRegion regionLight1Image;
+  private TextureRegion regionLight2Image;
   private float deltaMoveBehindCloud;
   private float deltaMoveMiddleCloud;
   private float deltaMoveFrontCloud;
+  private float time;
+  private float time2;
+  private boolean light1 = true;
+  private float scale = 1f;
+  private boolean growing = false;
 
   public Background() {
     deltaMoveMiddleCloud = 0;
@@ -26,6 +34,8 @@ public class Background {
     initializeCloudFront("model/environment/background/cloudsFront.png");
     initializeCloudMiddle("model/environment/background/cloudsMiddle.png");
     initializeCloudBehind("model/environment/background/cloudsBehind.png");
+    initializeLight1("model/environment/background/light1.png");
+    initializeLight2("model/environment/background/light2.png");
   }
 
 
@@ -50,9 +60,20 @@ public class Background {
   }
 
 
+  public void initializeLight1(String texturePath) {
+    Texture image = new Texture(Gdx.files.internal(texturePath));
+    regionLight1Image = new TextureRegion(image);
+  }
+
+  public void initializeLight2(String texturePath) {
+    Texture image = new Texture(Gdx.files.internal(texturePath));
+    regionLight2Image = new TextureRegion(image);
+  }
+
+
   public void draw(Batch batch, float parentAlpha) {
     batch.begin();
-    drawBackground(batch);
+    drawBackground(batch, parentAlpha);
     drawBehindCloud(batch, parentAlpha);
     drawMiddleCloud(batch, parentAlpha);
     drawFrontCloud(batch, parentAlpha);
@@ -60,9 +81,47 @@ public class Background {
 
   }
 
-  private void drawBackground(Batch batch) {
-//    batch.draw(regionBackgroundImage, 0, 0, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() , GameConfig.SCALE, GameConfig.SCALE, 0);
+  private void drawBackground(Batch batch, float parentAlpha) {
+    time += parentAlpha;
     batch.draw(regionBackgroundImage, 0, 0, regionBackgroundImage.getRegionWidth() * GameConfig.SCALE, regionBackgroundImage.getRegionHeight() * GameConfig.SCALE);
+
+    if(time >= 0.1f && time2 <=0.1f) {
+      if (scale <= 0.1f) {
+        growing = true;
+        light1 = !light1;
+      } else if (scale >= 1.0f) {
+        growing = false;
+
+      }
+
+      if (growing) {
+        scale += 0.1f;
+      } else {
+        scale -= 0.1f;
+      }
+      time = 0;
+    }
+
+    if(scale >= 0.9f) {
+      time2= (float)Math.random() * 4;
+    }
+
+    time2 -= parentAlpha;
+
+    Color color = batch.getColor();
+    float oldAlpha = color.a;
+    color.a = oldAlpha*scale;
+    batch.setColor(color);
+
+    if (light1) {
+      batch.draw(regionLight1Image, 0, 0, regionLight1Image.getRegionWidth() * GameConfig.SCALE, regionLight1Image.getRegionHeight() * GameConfig.SCALE);
+    } else {
+      batch.draw(regionLight2Image, 0, 0, regionLight2Image.getRegionWidth() * GameConfig.SCALE, regionLight2Image.getRegionHeight() * GameConfig.SCALE);
+    }
+
+    color.a = oldAlpha;
+    batch.setColor(color);
+
   }
 
   private void drawFrontCloud(Batch batch, float parentAlpha) {
