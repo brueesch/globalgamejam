@@ -45,7 +45,7 @@ public class GameInterface {
     height_offset += height_gap;
     font.draw(batch, "Fire", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
     height_offset += height_gap;
-    font.draw(batch, "Lighting", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
+    font.draw(batch, "Earth", screen_width - width_start + with_offset, screen_height - height_start - height_offset);
     batch.end();
   }
   
