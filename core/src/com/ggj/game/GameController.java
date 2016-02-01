@@ -28,7 +28,6 @@ public class GameController implements Screen {
   private Rock rock;
 
   public GameController(final GlobalGameJam globalgamejam) {
-    loadConfigs();
     setUpGame();
     createWorld();
     startSound();
@@ -122,9 +121,6 @@ public class GameController implements Screen {
     camera = (OrthographicCamera) stage.getCamera();
   }
 
-  private void loadConfigs() {
-    new GameConfig();
-  }
 
   private void startSound() {
     GameSound.BACKGROUND_SOUND.setLooping(true);

@@ -3,64 +3,71 @@ package com.ggj.game;
 import java.util.Hashtable;
 
 public class Level {
-  private int totalSpawns;
-  private int maxActive;
-  private int killedSpawns;
-  private int activeSpawns;
-  private Hashtable<MonsterLevel, Integer> chanceSpawns;
-  
-  // For later use
-  //private Hashtable<MonsterLevel, Integer> guaranteedSpawns;
-  
-  public Level()
-  {
-    chanceSpawns = new Hashtable<MonsterLevel, Integer>(); 
-  }
-  
-  public Level(int totalMaxSpawns, int maxActive, int chance1, int chance2, int chance3)
-  {
-    this();
-    this.totalSpawns = totalMaxSpawns;
-    this.maxActive = maxActive;
-    
-    addDifficulty(MonsterLevel.Level1, chance1);
-    addDifficulty(MonsterLevel.Level2, chance2);
-    addDifficulty(MonsterLevel.Level3, chance3);
-  }
-  
-  public Hashtable<MonsterLevel, Integer> getDifficulties()
-  {
-    return chanceSpawns;
-  }
-  
-  public void addDifficulty(MonsterLevel level, int spawnChance)
-  {
-    chanceSpawns.put(level, spawnChance);
-  }
+    private int totalSpawns;
+    private int maxActive;
+    private int killedSpawns;
+    private int activeSpawns;
 
-  public int getTotalSpawns() {
-    return totalSpawns;
-  }
 
-  public int getMaxActive() {
-    return maxActive;
-  }
-  
-  public synchronized void registerKill() {
-    killedSpawns++;
-    activeSpawns--;
-  }
-  
-  public int getActiveSpawns() {
-    return activeSpawns;
-  }
-  
-  public synchronized void spawn() {
-    activeSpawns++;
-  }
-  
-  public int getKilledSpawns()
-  {
-    return killedSpawns;
-  }
+    private int chanceMonsterLevel1;
+    private int chanceMonsterLevel2;
+    private int chanceMonsterLevel3;
+
+
+    public Level(int totalMaxSpawns, int maxActive, int chance1, int chance2, int chance3) {
+        this.totalSpawns = totalMaxSpawns;
+        this.maxActive = maxActive;
+        chanceMonsterLevel1 = chance1;
+        chanceMonsterLevel2 = chance2;
+        chanceMonsterLevel3 = chance3;
+    }
+
+    public int getTotalSpawns() {
+        return totalSpawns;
+    }
+
+    public int getMaxActive() {
+        return maxActive;
+    }
+
+    public synchronized void registerKill() {
+        killedSpawns++;
+        activeSpawns--;
+    }
+
+    public int getActiveSpawns() {
+        return activeSpawns;
+    }
+
+    public synchronized void spawn() {
+        activeSpawns++;
+    }
+
+    public int getKilledSpawns() {
+        return killedSpawns;
+    }
+
+    public int getChanceMonsterLevel1() {
+        return chanceMonsterLevel1;
+    }
+
+    public void setChanceMonsterLevel1(int chanceMonsterLevel1) {
+        this.chanceMonsterLevel1 = chanceMonsterLevel1;
+    }
+
+    public int getChanceMonsterLevel2() {
+        return chanceMonsterLevel2;
+    }
+
+    public void setChanceMonsterLevel2(int chanceMonsterLevel2) {
+        this.chanceMonsterLevel2 = chanceMonsterLevel2;
+    }
+
+    public int getChanceMonsterLevel3() {
+        return chanceMonsterLevel3;
+    }
+
+    public void setChanceMonsterLevel3(int chanceMonsterLevel3) {
+        this.chanceMonsterLevel3 = chanceMonsterLevel3;
+    }
 }

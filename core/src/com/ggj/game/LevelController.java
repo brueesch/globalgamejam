@@ -76,8 +76,8 @@ public class LevelController {
             }
           } while(recalculate);
           
-          int chance1 = level.getDifficulties().get(MonsterLevel.Level1);
-          int chance2 = level.getDifficulties().get(MonsterLevel.Level2);
+          int chance1 = level.getChanceMonsterLevel1();
+          int chance2 = level.getChanceMonsterLevel2();
           
           rnd = (int)(Math.random() * 100);
           int powerlevel = 0;
